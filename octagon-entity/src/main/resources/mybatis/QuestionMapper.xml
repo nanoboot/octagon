@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ Octagon: Database frontend.
+ Copyright (C) 2020-2022 the original author or authors.
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; version 2
+ of the License only.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.nanoboot.octagon.entity.impl.mappers.QuestionMapper">
+
+    <select id="hasChildren_PersonTask" parameterType="String" resultType="String">
+        SELECT
+        CASE WHEN COUNT(*) > 0 THEN 'true' ELSE 'false' END
+
+        FROM "PERSON_TASK"
+        WHERE "PARENT_ID" = #{id}
+    </select>
+    <select id="hasNotYetClosedChildren_PersonTask" parameterType="String" resultType="String">
+        SELECT
+        CASE WHEN COUNT(*) > 0 THEN 'true' ELSE 'false' END
+
+        FROM "PERSON_TASK"
+        WHERE "PARENT_ID" = #{id} and "STATUS" NOT IN ('RESOLVED', 'VERIFIED', 'CLOSED')
+    </select>
+
+    <select id="isParentClosed_PersonTask" parameterType="String" resultType="String">
+        SELECT
+        CASE WHEN "STATUS" IN ('RESOLVED', 'VERIFIED', 'CLOSED') THEN 'true' ELSE 'false' END
+
+        FROM "PERSON_TASK"
+        WHERE "ID" = #{id}
+    </select>
+
+
+
+
+    <select id="hasChildren_Epic" parameterType="String" resultType="String">
+        SELECT
+        CASE WHEN COUNT(*) > 0 THEN 'true' ELSE 'false' END
+
+        FROM "STORY"
+        WHERE "PARENT_ID" = #{id}
+    </select>
+    <select id="hasNotYetClosedChildren_Epic" parameterType="String" resultType="String">
+        SELECT
+        CASE WHEN COUNT(*) > 0 THEN 'true' ELSE 'false' END
+
+        FROM "STORY"
+        WHERE "PARENT_ID" = #{id} and "STATUS" NOT IN ('RESOLVED', 'VERIFIED', 'CLOSED')
+    </select>
+
+    <select id="isParentClosed_Epic" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+
+
+
+    <select id="hasChildren_Story" parameterType="String" resultType="String">
+        SELECT
+        CASE WHEN COUNT(*) > 0 THEN 'true' ELSE 'false' END
+
+        FROM "DEV_TASK"
+        WHERE "PARENT_ID" = #{id}
+    </select>
+    <select id="hasNotYetClosedChildren_Story" parameterType="String" resultType="String">
+        SELECT
+        CASE WHEN COUNT(*) > 0 THEN 'true' ELSE 'false' END
+
+        FROM "DEV_TASK"
+        WHERE "PARENT_ID" = #{id} and "STATUS" NOT IN ('RESOLVED', 'VERIFIED', 'CLOSED')
+    </select>
+
+    <select id="isParentClosed_Story" parameterType="String" resultType="String">
+        SELECT
+        CASE WHEN "STATUS" IN ('RESOLVED', 'VERIFIED', 'CLOSED') THEN 'true' ELSE 'false' END
+
+        FROM "EPIC"
+        WHERE "ID" = #{id}
+    </select>
+
+
+
+
+    <select id="hasChildren_DevTask" parameterType="String" resultType="String">
+        SELECT
+        CASE WHEN COUNT(*) > 0 THEN 'true' ELSE 'false' END
+
+        FROM "DEV_SUB_TASK"
+        WHERE "PARENT_ID" = #{id}
+    </select>
+    <select id="hasNotYetClosedChildren_DevTask" parameterType="String" resultType="String">
+        SELECT
+        CASE WHEN COUNT(*) > 0 THEN 'true' ELSE 'false' END
+
+        FROM "DEV_SUB_TASK"
+        WHERE "PARENT_ID" = #{id} and "STATUS" NOT IN ('RESOLVED', 'VERIFIED', 'CLOSED')
+    </select>
+
+    <select id="isParentClosed_DevTask" parameterType="String" resultType="String">
+        SELECT
+        CASE WHEN "STATUS" IN ('RESOLVED', 'VERIFIED', 'CLOSED') THEN 'true' ELSE 'false' END
+
+        FROM "STORY"
+        WHERE "ID" = #{id}
+    </select>
+
+
+    <select id="hasChildren_DevSubTask" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+    <select id="hasNotYetClosedChildren_DevSubTask" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+    <select id="isParentClosed_DevSubTask" parameterType="String" resultType="String">
+        SELECT
+        CASE WHEN "STATUS" IN ('RESOLVED', 'VERIFIED', 'CLOSED') THEN 'true' ELSE 'false' END
+
+        FROM "DEV_TASK"
+        WHERE "ID" = #{id}
+    </select>
+
+
+
+    <select id="hasChildren_Request" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+    <select id="hasNotYetClosedChildren_Request" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+    <select id="isParentClosed_Request" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+
+    <select id="hasChildren_Proposal" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+    <select id="hasNotYetClosedChildren_Proposal" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+    <select id="isParentClosed_Proposal" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+
+    <select id="hasChildren_NewFeature" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+    <select id="hasNotYetClosedChildren_NewFeature" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+    <select id="isParentClosed_NewFeature" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+
+    <select id="hasChildren_Enhancement" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+    <select id="hasNotYetClosedChildren_Enhancement" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+    <select id="isParentClosed_Enhancement" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+
+    <select id="hasChildren_Bug" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+    <select id="hasNotYetClosedChildren_Bug" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+    <select id="isParentClosed_Bug" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+
+    <select id="hasChildren_Incident" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+    <select id="hasNotYetClosedChildren_Incident" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+    <select id="isParentClosed_Incident" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+
+    <select id="hasChildren_Problem" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+    <select id="hasNotYetClosedChildren_Problem" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+
+    <select id="isParentClosed_Problem" parameterType="String" resultType="String">
+        SELECT 'false'
+    </select>
+</mapper>

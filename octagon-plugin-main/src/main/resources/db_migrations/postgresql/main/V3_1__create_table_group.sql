@@ -1,0 +1,7 @@
+CREATE TABLE "GROUP"
+(
+    "ID"          UUID,
+    "NICK"        TEXT NOT NULL UNIQUE,
+    "OWNER"       UUID NOT NULL,
+    "DESCRIPTION" TEXT
+);

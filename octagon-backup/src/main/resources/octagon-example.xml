@@ -1,0 +1,147 @@
+<!--
+ Octagon: Database frontend.
+ Copyright (C) 2020-2022 the original author or authors.
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; version 2
+ of the License only.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<octagon>
+    <users>
+        <user>
+            <id>01463056-9568-4e6b-9353-8c607f17a2d3</id>
+            <nick>rob</nick>
+            <name>Robert</name>
+            <surname>Vokáč</surname>
+            <active>true</active>
+            <roleStriction>READER</roleStriction>
+        </user>
+    </users>
+    <userDetails>
+        <userDetail>
+            <id>01463056-9568-4e6b-9353-8c607f17a2d3</id>
+            <user>01463056-9568-4e6b-9353-8c607f17a2d3</user>
+            <passwordHash>ghj</passwordHash>
+        </userDetail>
+    </userDetails>
+    <groups>
+        <group>
+            <id>01463056-9568-4e6b-9353-8c607f17a2d3</id>
+            <nick>abc</nick>
+            <owner>01463056-9568-4e6b-9353-8c607f17a2d3</owner>
+        </group>
+    </groups>
+    <userAssignments>
+        <userAssignment>
+            <id>01463056-9568-4e6b-9353-8c607f17a2d3</id>
+            <user>01463056-9568-4e6b-9353-8c607f17a2d3</user>
+            <group>01463056-9568-4e6b-9353-8c607f17a2d3</group>
+        </userAssignment>
+    </userAssignments>
+    <accessRights>
+        <accessRight>
+            <id>01463056-9568-4e6b-9353-8c607f17a2d3</id>
+            <read>true</read>
+            <edit>false</edit>
+            <move>false</move>
+            <delete>false</delete>
+        </accessRight>
+    </accessRights>
+    <accesses>
+        <access>
+            <id>01463056-9568-4e6b-9353-8c607f17a2d3</id>
+            <user>01463056-9568-4e6b-9353-8c607f17a2d3</user>
+            <group>01463056-9568-4e6b-9353-8c607f17a2d3</group>
+            <userAccessRight>01463056-9568-4e6b-9353-8c607f17a2d3</userAccessRight>
+            <groupAccessRight>01463056-9568-4e6b-9353-8c607f17a2d3</groupAccessRight>
+            <otherAccessRight>01463056-9568-4e6b-9353-8c607f17a2d3</otherAccessRight>
+            <system>false</system>
+            <hidden>false</hidden>
+            <denyAnonymous>false</denyAnonymous>
+        </access>
+    </accesses>
+    <logs>
+        <log>
+            <id>01463056-9568-4e6b-9353-8c607f17a2d3</id>
+            <type>node_new</type>
+            <timestamp>2005-10-30 T 10:45 UTC</timestamp>
+            <user>01463056-9568-4e6b-9353-8c607f17a2d3</user>
+            <data>{"a":"b"}</data>
+        </log>
+    </logs>
+    <databases>
+        <database>
+            <id>01463056-9568-4e6b-9353-8c607f17a2d3</id>
+            <access>01463056-9568-4e6b-9353-8c607f17a2d3</access>
+            <name>a</name>
+            <description>a</description>
+        </database>
+    </databases>
+    <spaces>
+        <space>
+            <id>01463056-9568-4e6b-9353-8c607f17a2d3</id>
+            <access>01463056-9568-4e6b-9353-8c607f17a2d3</access>
+            <database>01463056-9568-4e6b-9353-8c607f17a2d3</database>
+            <name>a</name>
+            <description>a</description>
+        </space>
+    </spaces>
+    <nodes>
+        <node>
+            <id>01463056-9568-4e6b-9353-8c607f17a2d3</id>
+            <systemId>01463056-9568-4e6b-9353-8c607f17a2d3</systemId>
+            <access>01463056-9568-4e6b-9353-8c607f17a2d3</access>
+            <space>01463056-9568-4e6b-9353-8c607f17a2d3</space>
+            <name>a</name>
+            <description>a</description>
+            <path>
+                <node>01463056-9568-4e6b-9353-8c607f17a2d3</node>
+                <node>01463056-9568-4e6b-9353-8c607f17a2d3</node>
+                <node>01463056-9568-4e6b-9353-8c607f17a2d3</node>
+                <node>01463056-9568-4e6b-9353-8c607f17a2d3</node>
+                <node>01463056-9568-4e6b-9353-8c607f17a2d3</node>
+                <node>01463056-9568-4e6b-9353-8c607f17a2d3</node>
+                <node>01463056-9568-4e6b-9353-8c607f17a2d3</node>
+                <node>01463056-9568-4e6b-9353-8c607f17a2d3</node>
+                <node>01463056-9568-4e6b-9353-8c607f17a2d3</node>
+                <node>01463056-9568-4e6b-9353-8c607f17a2d3</node>
+                <node>01463056-9568-4e6b-9353-8c607f17a2d3</node>
+                <node>01463056-9568-4e6b-9353-8c607f17a2d3</node>
+            </path>
+            <content>a</content>
+            <json>{}</json>
+            <schema>01463056-9568-4e6b-9353-8c607f17a2d3</schema>
+            <type>SCHEMA</type>
+        </node>
+    </nodes>
+    <files>
+        <file>
+            <id>01463056-9568-4e6b-9353-8c607f17a2d3</id>
+            <node>01463056-9568-4e6b-9353-8c607f17a2d3</node>
+            <name>a</name>
+            <description>a</description>
+            <size>20</size>
+            <hash>a</hash>
+        </file>
+    </files>
+    <directories>
+        <directory>
+            <id>01463056-9568-4e6b-9353-8c607f17a2d3</id>
+            <node>01463056-9568-4e6b-9353-8c607f17a2d3</node>
+            <name>a</name>
+            <description>a</description>
+        </directory>
+    </directories>
+</octagon>

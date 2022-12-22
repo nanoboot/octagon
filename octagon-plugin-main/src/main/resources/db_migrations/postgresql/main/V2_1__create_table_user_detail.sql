@@ -1,0 +1,6 @@
+CREATE TABLE "USER_DETAIL"
+(
+    "ID"            UUID,
+    "USER"          UUID NOT NULL UNIQUE,
+    "PASSWORD_HASH" TEXT NOT NULL
+);

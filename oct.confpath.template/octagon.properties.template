@@ -1,0 +1,6 @@
+env=dev
+
+whiningEnabled=false
+reminderEnabled=false
+batchEnabled=true
+

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ Octagon: Database frontend.
+ Copyright (C) 2020-2022 the original author or authors.
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; version 2
+ of the License only.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.nanoboot.octagon.plugin.reminder.impl.mappers.ReminderMapper">
+
+    <resultMap id="reminderResultMap" type="org.nanoboot.octagon.plugin.reminder.classes.Reminder">
+        <id property="id" column="ID" typeHandler="org.nanoboot.octagon.entity.typehandlers.UUIDTypeHandler"/>
+
+        <result property="type" column="TYPE"/>
+        <result property="objectId" column="OBJECT_ID" typeHandler="org.nanoboot.octagon.entity.typehandlers.UUIDTypeHandler"/>
+
+        <result property="comment" column="COMMENT"/>
+        <result property="urgency" column="URGENCY" typeHandler="org.nanoboot.octagon.plugin.reminder.impl.typehandlers.UrgencyTypeHandler"/>
+
+        <result property="runEveryXDays" column="RUN_EVERY_X_DAYS"/>
+        <result property="lastRun" column="LAST_RUN" typeHandler="org.nanoboot.octagon.entity.typehandlers.UniversalDateTimeTypeHandler"/>
+
+        <result property="alarmStatus" column="ALARM_STATUS" typeHandler="org.nanoboot.octagon.plugin.reminder.impl.typehandlers.AlarmStatusTypeHandler"/>
+        <result property="ringVolume" column="RING_VOLUME"/>
+    </resultMap>
+
+    <sql id="reminderColumns">
+        "ID",
+        "TYPE", "OBJECT_ID",
+        "COMMENT", "URGENCY",
+        "RUN_EVERY_X_DAYS", "LAST_RUN",
+        "ALARM_STATUS", "RING_VOLUME"
+    </sql>
+
+    <select id="read" parameterType="String" resultMap="reminderResultMap">
+        SELECT
+        <include refid="reminderColumns"/>
+        FROM "REMINDER"
+        WHERE "ID" = #{id}
+    </select>
+
+    <insert id="create" parameterType="org.nanoboot.octagon.plugin.reminder.classes.Reminder">
+        INSERT INTO "REMINDER" (<include refid="reminderColumns"/>)
+        VALUES
+        (
+        #{id,javaType=java.util.UUID,jdbcType=OTHER,typeHandler=org.nanoboot.octagon.entity.typehandlers.UUIDTypeHandler},
+
+        #{type},
+        #{objectId,javaType=java.util.UUID,jdbcType=VARCHAR,typeHandler=org.nanoboot.octagon.entity.typehandlers.UUIDTypeHandler},
+
+        #{comment},
+        #{urgency,javaType=org.nanoboot.powerframework.time.moment.UniversalDateTime,jdbcType=VARCHAR,typeHandler=org.nanoboot.octagon.plugin.reminder.impl.typehandlers.UrgencyTypeHandler},
+
+        #{runEveryXDays},
+        #{lastRun,javaType=org.nanoboot.powerframework.time.moment.UniversalDateTime,jdbcType=VARCHAR,typeHandler=org.nanoboot.octagon.entity.typehandlers.UniversalDateTimeTypeHandler},
+
+        #{alarmStatus,javaType=org.nanoboot.powerframework.time.moment.UniversalDateTime,jdbcType=VARCHAR,typeHandler=org.nanoboot.octagon.plugin.reminder.impl.typehandlers.AlarmStatusTypeHandler},
+        #{ringVolume}
+        )
+    </insert>
+
+    <update id="update" parameterType="org.nanoboot.octagon.plugin.reminder.classes.Reminder">
+        UPDATE "REMINDER" SET
+
+        "TYPE" = #{type},
+        "OBJECT_ID" = #{objectId},
+
+        "COMMENT" = #{comment},
+        "URGENCY" = #{urgency},
+
+        "RUN_EVERY_X_DAYS" = #{runEveryXDays},
+        "LAST_RUN" = #{lastRun, javaType=org.nanoboot.powerframework.time.moment.UniversalDateTime,jdbcType=VARCHAR,typeHandler=org.nanoboot.octagon.entity.typehandlers.UniversalDateTimeTypeHandler},
+        "ALARM_STATUS" = #{alarmStatus},
+        "RING_VOLUME" = #{ringVolume}
+
+        WHERE "ID" = #{id}
+    </update>
+
+    <delete id="delete" parameterType="String">
+            DELETE FROM "REMINDER"
+            WHERE "ID" = #{id}
+    </delete>
+
+    <select id="list" parameterType="String" resultMap="reminderResultMap">
+        SELECT
+        <include refid="reminderColumns"/>
+        FROM "REMINDER"
+        WHERE ${value}
+
+    </select>
+
+    <select id="isReminded" parameterType="String" resultType="boolean">
+        SELECT
+        CASE WHEN count(*) > 0 THEN 1 ELSE 0 END
+        FROM "REMINDER"
+        WHERE "ID" = #{id}
+    </select>
+
+
+
+    <!-- Labels -->
+    <resultMap id="labelResultMap" type="org.nanoboot.octagon.entity.classes.EntityLabel">
+        <id property="id" column="ID"/>
+        <result property="label" column="NAME"/>
+    </resultMap>
+
+    <sql id="labelColumns">
+        "ID", "NAME"
+    </sql>
+
+    <select id="getLabel" parameterType="String" resultType="String">
+        SELECT ID, ((CASE WHEN TYPE IS NULL THEN '' ELSE (TYPE || ' : ') END) || (CASE WHEN OBJECT_ID IS NULL THEN '' ELSE OBJECT_ID END) || (CASE WHEN COMMENT IS NULL THEN '' ELSE COMMENT END)) AS NAME FROM "REMINDER" WHERE "ID" = #{id}
+    </select>
+    <select id="getLabels" resultMap="labelResultMap">
+        SELECT ID, ((CASE WHEN TYPE IS NULL THEN '' ELSE (TYPE || ' : ') END) || (CASE WHEN OBJECT_ID IS NULL THEN '' ELSE OBJECT_ID END) || (CASE WHEN COMMENT IS NULL THEN '' ELSE COMMENT END)) AS NAME FROM "REMINDER"
+    </select>
+</mapper>

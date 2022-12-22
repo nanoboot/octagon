@@ -1,0 +1,11 @@
+if getAttribute("runEveryXDays") = null andand getAttribute(cronExpression) = null
+then
+do
+fail "runEveryXDays and cronExpression are both empty. One of them must be set."
+enddo
+
+if getAttribute("runEveryXDays") != null andand getAttribute(cronExpression) != null
+then
+do
+fail "runEveryXDays and cronExpression are both set. Only one of them can be set."
+enddo

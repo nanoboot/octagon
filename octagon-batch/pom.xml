@@ -1,0 +1,73 @@
+<!--
+ Octagon: Database frontend.
+ Copyright (C) 2020-2022 the original author or authors.
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; version 2
+ of the License only.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.nanoboot.octagon</groupId>
+        <artifactId>octagon-parent</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>octagon-batch</artifactId>
+    <packaging>jar</packaging>
+    <name>octagon batch</name>
+    <description>description</description>
+    <properties>
+
+    </properties>
+
+    <build>
+        <plugins>
+
+        </plugins>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>org.nanoboot.octagon</groupId>
+            <artifactId>octagon-entity</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.nanoboot.octagon</groupId>
+            <artifactId>octagon-plugin-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.nanoboot.powerframework</groupId>
+            <artifactId>power-time</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.nanoboot.powerframework</groupId>
+            <artifactId>power-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.nanoboot.powerframework</groupId>
+            <artifactId>power-xml</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.nanoboot.powerframework</groupId>
+            <artifactId>power-json</artifactId>
+        </dependency>
+    </dependencies>
+    <repositories>
+
+    </repositories>
+</project>

@@ -1,0 +1,99 @@
+<!--
+ Octagon: Database frontend.
+ Copyright (C) 2020-2022 the original author or authors.
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; version 2
+ of the License only.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+    <import resource="classpath:/context/octagon-persistence-impl-sqlitemybatis/repositories.xml"/>
+
+    <bean id="homeAction" class="org.nanoboot.octagon.struts.actions.HomeAction"
+          scope="prototype">
+        <property name="entityGroupRegistry" ref="entityGroupRegistry"/>
+        <property name="entityRegistry" ref="entityRegistry"/>
+    </bean>
+    <bean id="sqlExplorerAction" class="org.nanoboot.octagon.struts.actions.SqlExplorerAction"
+          scope="prototype">
+        <property name="sqlExplorer" ref="sqlExplorer"/>
+        <property name="labelRepository" ref="labelRepository"/>
+        <property name="repositoryRegistry" ref="repositoryRegistry"/>
+    </bean>
+
+    <bean id="webappAction" class="org.nanoboot.octagon.struts.actions.webapp.WebAppAction"
+          scope="prototype">
+        <property name="labelRepository" ref="labelRepository"/>
+        <property name="repositoryRegistry" ref="repositoryRegistry"/>
+        <property name="pluginLoader" ref="pluginLoader"/>
+    </bean>
+
+    <bean id="menuEntityAction" class="org.nanoboot.octagon.struts.actions.entity.MenuEntityAction"
+          scope="prototype">
+        <property name="repositoryRegistry" ref="repositoryRegistry"/>
+        <property name="labelRepository" ref="labelRepository"/>
+        <property name="namedListRepository" ref="namedListRepository"/>
+        <property name="relatedListRepository" ref="relatedListRepository"/>
+        <property name="env" ref="env"/>
+    </bean>
+    <bean id="createEntityAction"
+          class="org.nanoboot.octagon.struts.actions.entity.CreateEntityAction"
+          scope="prototype">
+        <property name="repositoryRegistry" ref="repositoryRegistry"/>
+        <property name="labelRepository" ref="labelRepository"/>
+        <property name="namedListRepository" ref="namedListRepository"/>
+        <property name="relatedListRepository" ref="relatedListRepository"/>
+        <property name="env" ref="env"/>
+    </bean>
+    <bean id="listEntityAction" class="org.nanoboot.octagon.struts.actions.entity.ListEntitiesAction"
+          scope="prototype">
+        <property name="repositoryRegistry" ref="repositoryRegistry"/>
+        <property name="labelRepository" ref="labelRepository"/>
+        <property name="namedListRepository" ref="namedListRepository"/>
+        <property name="relatedListRepository" ref="relatedListRepository"/>
+        <property name="env" ref="env"/>
+    </bean>
+    <bean id="readEntityAction" class="org.nanoboot.octagon.struts.actions.entity.ReadEntityAction"
+          scope="prototype">
+        <property name="repositoryRegistry" ref="repositoryRegistry"/>
+        <property name="labelRepository" ref="labelRepository"/>
+        <property name="namedListRepository" ref="namedListRepository"/>
+        <property name="relatedListRepository" ref="relatedListRepository"/>
+        <property name="env" ref="env"/>
+    </bean>
+    <bean id="updateEntityAction"
+          class="org.nanoboot.octagon.struts.actions.entity.UpdateEntityAction"
+          scope="prototype">
+        <property name="repositoryRegistry" ref="repositoryRegistry"/>
+        <property name="labelRepository" ref="labelRepository"/>
+        <property name="namedListRepository" ref="namedListRepository"/>
+        <property name="relatedListRepository" ref="relatedListRepository"/>
+        <property name="env" ref="env"/>
+    </bean>
+    <bean id="deleteEntityAction"
+          class="org.nanoboot.octagon.struts.actions.entity.DeleteEntityAction"
+          scope="prototype">
+        <property name="repositoryRegistry" ref="repositoryRegistry"/>
+        <property name="labelRepository" ref="labelRepository"/>
+        <property name="namedListRepository" ref="namedListRepository"/>
+        <property name="relatedListRepository" ref="relatedListRepository"/>
+        <property name="env" ref="env"/>
+    </bean>
+
+
+
+</beans>

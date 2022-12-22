@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Octagon: Database frontend.
+ Copyright (C) 2020-2022 the original author or authors.
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; version 2
+ of the License only.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.nanoboot.octagon.entity.impl.mappers.NamedListMapper">
+
+    <resultMap id="labelResultMap" type="org.nanoboot.octagon.entity.classes.EntityLabel">
+        <id property="id" column="ID"/>
+        <result property="label" column="NAME"/>
+    </resultMap>
+
+    <sql id="labelColumns">
+        "ID", "NAME"
+    </sql>
+
+    <select id="getBookThings" resultMap="labelResultMap">
+        SELECT
+        <include refid="labelColumns"/>
+        FROM "THING" WHERE
+        "PATH1" LIKE '%book%' OR
+        "PATH2" LIKE '%book%' OR
+        "PATH3" LIKE '%book%' OR
+        "PATH4" LIKE '%book%'
+    </select>
+
+    <select id="getVersionsForProduct" parameterType="String" resultMap="labelResultMap">
+        SELECT
+        <include refid="labelColumns"/>
+        FROM "PRODUCT_VERSION"
+        WHERE "PRODUCT_ID" = #{productId} AND ("RETIRED" != 1  OR "RETIRED" IS NULL)
+    </select>
+
+    <select id="getEpicsForProduct" parameterType="String" resultMap="labelResultMap">
+        SELECT
+        <include refid="labelColumns"/>
+        FROM "EPIC"
+        WHERE "PRODUCT_ID" = #{productId}
+    </select>
+    <select id="getStoriesForProduct" parameterType="String" resultMap="labelResultMap">
+        SELECT
+        <include refid="labelColumns"/>
+        FROM "STORY"
+        WHERE "PRODUCT_ID" = #{productId}
+    </select>
+    <select id="getDevTasksForProduct" parameterType="String" resultMap="labelResultMap">
+        SELECT
+        <include refid="labelColumns"/>
+        FROM "DEV_TASK"
+        WHERE "PRODUCT_ID" = #{productId}
+    </select>
+    <select id="getProposalsForProduct" parameterType="String" resultMap="labelResultMap">
+        SELECT
+        <include refid="labelColumns"/>
+        FROM "PROPOSAL"
+        WHERE "PRODUCT_ID" = #{productId}
+    </select>
+    <select id="getNewFeaturesForProduct" parameterType="String" resultMap="labelResultMap">
+        SELECT
+        <include refid="labelColumns"/>
+        FROM "NEW_FEATURE"
+        WHERE "PRODUCT_ID" = #{productId}
+    </select>
+    <select id="getEnhancementsForProduct" parameterType="String" resultMap="labelResultMap">
+        SELECT
+        <include refid="labelColumns"/>
+        FROM "ENHANCEMENT"
+        WHERE "PRODUCT_ID" = #{productId}
+    </select>
+    <select id="getBugsForProduct" parameterType="String" resultMap="labelResultMap">
+        SELECT
+        <include refid="labelColumns"/>
+        FROM "BUG"
+        WHERE "PRODUCT_ID" = #{productId}
+    </select>
+    <select id="getIncidentsForProduct" parameterType="String" resultMap="labelResultMap">
+        SELECT
+        <include refid="labelColumns"/>
+        FROM "INCIDENT"
+        WHERE "PRODUCT_ID" = #{productId}
+    </select>
+    <select id="getProblemsForProduct" parameterType="String" resultMap="labelResultMap">
+        SELECT
+        <include refid="labelColumns"/>
+        FROM "PROBLEM"
+        WHERE "PRODUCT_ID" = #{productId}
+    </select>
+
+
+
+
+
+    <select id="getProductModulesForProduct" parameterType="String" resultMap="labelResultMap">
+        SELECT
+        <include refid="labelColumns"/>
+        FROM "PRODUCT_MODULE"
+        WHERE "PRODUCT_ID" = #{productId}
+    </select>
+    <select id="getProductComponentsForProduct" parameterType="String" resultMap="labelResultMap">
+        SELECT
+        <include refid="labelColumns"/>
+        FROM "PRODUCT_COMPONENT"
+        WHERE "PRODUCT_ID" = #{productId}
+    </select>
+    <select id="getProductMilestonesForProduct" parameterType="String" resultMap="labelResultMap">
+        SELECT
+        <include refid="labelColumns"/>
+        FROM "PRODUCT_MILESTONE"
+        WHERE "PRODUCT_ID" = #{productId}
+    </select>
+
+
+    <select id="getVertexesForGraph" parameterType="String" resultMap="labelResultMap">
+        SELECT
+        <include refid="labelColumns"/>
+        FROM "GR_VERTEX"
+        WHERE "GR_GRAPH_ID" = #{graphId}
+    </select>
+
+
+    <select id="getEdgesForGraph" parameterType="String" resultMap="labelResultMap">
+        SELECT
+        <include refid="labelColumns"/>
+        FROM "GR_EDGE"
+        WHERE "GR_GRAPH_ID" = #{graphId}
+    </select>
+
+</mapper>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ Octagon: Database frontend.
+ Copyright (C) 2020-2022 the original author or authors.
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; version 2
+ of the License only.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.nanoboot.octagon.plugin.whining.impl.mappers.WhiningMapper">
+
+    <resultMap id="whiningResultMap" type="org.nanoboot.octagon.plugin.whining.classes.Whining">
+        <id property="id" column="ID" typeHandler="org.nanoboot.octagon.entity.typehandlers.UUIDTypeHandler"/>
+
+        <result property="emailSubject" column="EMAIL_SUBJECT"/>
+        <result property="emailDescriptiveText" column="EMAIL_DESCRIPTIVE_TEXT"/>
+        <result property="enabled" column="ENABLED" typeHandler="org.nanoboot.octagon.entity.typehandlers.BooleanTypeHandler"/>
+        <result property="sendEvenIfNothingFound" column="SEND_EVEN_IF_NOTHING_FOUND" typeHandler="org.nanoboot.octagon.entity.typehandlers.BooleanTypeHandler"/>
+
+        <result property="runEveryXDays" column="RUN_EVERY_X_DAYS"/>
+        <result property="cronExpression" column="CRON_EXPRESSION"/>
+        <result property="lastRun" column="LAST_RUN" typeHandler="org.nanoboot.octagon.entity.typehandlers.UniversalDateTimeTypeHandler"/>
+        <result property="lastFailure" column="LAST_FAILURE" typeHandler="org.nanoboot.octagon.entity.typehandlers.UniversalDateTimeTypeHandler"/>
+        <result property="lastFailureMsg" column="LAST_FAILURE_MSG" />
+    </resultMap>
+
+    <sql id="whiningColumns">
+        "ID",
+        "EMAIL_SUBJECT", "EMAIL_DESCRIPTIVE_TEXT", "ENABLED", "SEND_EVEN_IF_NOTHING_FOUND",
+        "RUN_EVERY_X_DAYS", "CRON_EXPRESSION", "LAST_RUN",
+        "LAST_FAILURE", "LAST_FAILURE_MSG"
+    </sql>
+
+    <insert id="create" parameterType="org.nanoboot.octagon.plugin.whining.classes.Whining">
+        INSERT INTO "WHINING" (<include refid="whiningColumns"/>)
+        VALUES
+        (
+        #{id,javaType=java.util.UUID,jdbcType=OTHER,typeHandler=org.nanoboot.octagon.entity.typehandlers.UUIDTypeHandler},
+
+        #{emailSubject},
+        #{emailDescriptiveText},
+        #{enabled,javaType=Boolean,jdbcType=INTEGER,typeHandler=org.nanoboot.octagon.entity.typehandlers.BooleanTypeHandler},
+        #{sendEvenIfNothingFound,javaType=Boolean,jdbcType=INTEGER,typeHandler=org.nanoboot.octagon.entity.typehandlers.BooleanTypeHandler},
+
+        #{runEveryXDays},
+        #{cronExpression},
+        #{lastRun,javaType=org.nanoboot.powerframework.time.moment.UniversalDateTime,jdbcType=VARCHAR,typeHandler=org.nanoboot.octagon.entity.typehandlers.UniversalDateTimeTypeHandler},
+        #{lastFailure,javaType=org.nanoboot.powerframework.time.moment.UniversalDateTime,jdbcType=VARCHAR,typeHandler=org.nanoboot.octagon.entity.typehandlers.UniversalDateTimeTypeHandler},
+        #{lastFailureMsg}
+        )
+    </insert>
+
+    <select id="read" parameterType="String" resultMap="whiningResultMap">
+        SELECT
+        <include refid="whiningColumns"/>
+        FROM "WHINING"
+        WHERE "ID" = #{id}
+    </select>
+
+    <update id="update" parameterType="org.nanoboot.octagon.plugin.whining.classes.Whining">
+        UPDATE "WHINING" SET
+
+        "EMAIL_SUBJECT" = #{emailSubject},
+        "EMAIL_DESCRIPTIVE_TEXT" = #{emailDescriptiveText},
+        "ENABLED" = #{enabled,javaType=Boolean,jdbcType=INTEGER,typeHandler=org.nanoboot.octagon.entity.typehandlers.BooleanTypeHandler},
+        "SEND_EVEN_IF_NOTHING_FOUND" = #{sendEvenIfNothingFound,javaType=Boolean,jdbcType=INTEGER,typeHandler=org.nanoboot.octagon.entity.typehandlers.BooleanTypeHandler},
+
+        "RUN_EVERY_X_DAYS" = #{runEveryXDays},
+        "CRON_EXPRESSION" = #{cronExpression},
+        "LAST_RUN" = #{lastRun, javaType=org.nanoboot.powerframework.time.moment.UniversalDateTime,jdbcType=VARCHAR,typeHandler=org.nanoboot.octagon.entity.typehandlers.UniversalDateTimeTypeHandler},
+        "LAST_FAILURE" = #{lastFailure, javaType=org.nanoboot.powerframework.time.moment.UniversalDateTime,jdbcType=VARCHAR,typeHandler=org.nanoboot.octagon.entity.typehandlers.UniversalDateTimeTypeHandler},
+        "LAST_FAILURE_MSG" = #{lastFailureMsg}
+
+        WHERE "ID" = #{id}
+    </update>
+
+    <delete id="delete" parameterType="String">
+            DELETE FROM "WHINING"
+            WHERE "ID" = #{id}
+    </delete>
+
+    <select id="list" parameterType="String" resultMap="whiningResultMap">
+        SELECT
+        <include refid="whiningColumns"/>
+        FROM "WHINING"
+        WHERE ${value}
+    </select>
+
+
+    <!-- Labels -->
+    <resultMap id="labelResultMap" type="org.nanoboot.octagon.entity.classes.EntityLabel">
+        <id property="id" column="ID"/>
+        <result property="label" column="NAME"/>
+    </resultMap>
+
+    <sql id="labelColumns">
+        "ID", "NAME"
+    </sql>
+
+    <select id="getLabel" parameterType="String" resultType="String">
+        SELECT
+            "EMAIL_SUBJECT" AS "NAME"
+        FROM "WHINING"
+        WHERE "ID" = #{whiningId}
+    </select>
+    <select id="getLabels" resultMap="labelResultMap">
+        SELECT
+            "ID", "EMAIL_SUBJECT" AS "NAME"
+        FROM "WHINING"
+    </select>
+
+</mapper>

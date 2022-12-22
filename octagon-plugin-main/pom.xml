@@ -1,0 +1,112 @@
+<!--
+ Octagon: Database frontend.
+ Copyright (C) 2020-2022 the original author or authors.
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; version 2
+ of the License only.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.nanoboot.octagon</groupId>
+        <artifactId>octagon-plugin-parent</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+        <relativePath>../octagon-plugin-parent/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>octagon-plugin-main</artifactId>
+    <packaging>jar</packaging>
+    <name>Octagon Plugin main</name>
+    <description>description</description>
+    <properties>
+
+    </properties>
+
+    <build>
+
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>add-resource</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>add-resource</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources/db_migrations/sqlite/main</directory>
+                                    <targetPath>db_migrations/sqlite/main</targetPath>
+                                    <includes>
+                                        <include>*.sql</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--           <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>5.2.4</version>
+                <configuration>
+                    <url>jdbc:postgresql://localhost:***/octagon?currentSchema=octagon</url>
+                    <url>jdbc:postgresql://localhost:***/octagon</url>
+                    <user>postgres</user>
+                    <password>***</password>
+                    <locations>
+                        <location>classpath:flyway/migrations</location>
+                    </locations>
+
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>42.2.5.jre7</version>
+                    </dependency>
+                </dependencies>
+            </plugin>-->
+        </plugins>
+    </build>
+    <dependencies>
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>org.nanoboot.powerframework</groupId>
+            <artifactId>power-time</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.nanoboot.powerframework</groupId>
+            <artifactId>power-json</artifactId>
+        </dependency>
+    </dependencies>
+    <repositories>
+  
+    </repositories>
+</project>

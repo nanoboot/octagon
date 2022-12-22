@@ -1,0 +1,132 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+<!--
+ Octagon: Database frontend.
+ Copyright (C) 2020-2022 the original author or authors.
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; version 2
+ of the License only.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+
+    <import resource="infrastructure.xml"/>
+    <import resource="../entities.xml"/>
+    <import resource="../plugins.xml"/>
+
+
+    <bean id="sqlExplorer"
+          class="org.nanoboot.octagon.entity.impl.repos.SqlExplorerImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="smtpUser" class="org.nanoboot.powerframework.mail.SmtpUser">
+        <property name="userName" value="${smtp.user-name}"/>
+        <property name="password" value="${smtp.password}"/>
+    </bean>
+    <bean id="smtpServer" class="org.nanoboot.powerframework.mail.SmtpServer">
+        <property name="from" value="${smtp.from}"/>
+        <property name="serverUrl" value="${smtp.server-url}"/>
+        <property name="serverPort" value="${smtp.server-port}"/>
+        <property name="ssl" value="${smtp.ssl}"/>
+    </bean>
+    <bean id="mailBox" class="org.nanoboot.powerframework.mail.MailBox">
+        <property name="smtpServer" ref="smtpServer"/>
+    </bean>
+    <bean id="mailer" class="org.nanoboot.octagon.mail.impl.MailerImpl">
+        <property name="smtpUser" ref="smtpUser"/>
+        <property name="mailBox" ref="mailBox"/>
+        <property name="to" value="${smtp.to}"/>
+        <property name="env" ref="env"/>
+
+    </bean>
+    <bean id="whiningExecutor"
+          class="org.nanoboot.octagon.whining.impl.WhiningExecutorImpl"
+          init-method="start" destroy-method="stopExecutor">
+        <property name="repositoryRegistry" ref="repositoryRegistry"/>
+        <property name="mailer" ref="mailer"/>
+        <property name="sqlExplorer" ref="sqlExplorer"/>
+        <property name="labelRepository" ref="labelRepository"/>
+
+
+<!--        <property name="tempLogTool" ref="tempLogTool"/>-->
+        <property name="env" ref="env"/>
+        <property name="enabled" ref="whiningEnabled"/>
+
+    </bean>
+    <bean id="reminderExecutor"
+          class="org.nanoboot.octagon.reminder.ReminderExecutorImpl"
+          init-method="start" destroy-method="stopExecutor">
+        <property name="repositoryRegistry" ref="repositoryRegistry"/>
+        <property name="mailer" ref="mailer"/>
+        <property name="labelRepository" ref="labelRepository"/>
+
+        <property name="env" ref="env"/>
+
+        <property name="enabled" ref="reminderEnabled"/>
+
+    </bean>
+    
+    <bean id="batchExecutor"
+          class="org.nanoboot.octagon.batch.api.BatchExecutorImpl"
+          init-method="start" destroy-method="stopExecutor">
+        <property name="repositoryRegistry" ref="repositoryRegistry"/>
+        <property name="mailer" ref="mailer"/>
+        <property name="labelRepository" ref="labelRepository"/>
+
+        <property name="env" ref="env"/>
+
+        <property name="enabled" ref="batchEnabled"/>
+        <property name="pluginLoader" ref="pluginLoader"/>
+
+    </bean>
+
+    <import resource="myBatisMappers.xml"/>
+
+    <bean id="labelRepository"
+          class="org.nanoboot.octagon.entity.impl.repos.LabelRepositoryImplSQLiteMyBatis">
+        <constructor-arg ref="repositoryRegistry"/>
+    </bean>
+    <bean id="namedListRepository"
+          class="org.nanoboot.octagon.entity.impl.repos.NamedListRepositoryImplSQLiteMyBatis">
+        <constructor-arg ref="namedListMapper"/>
+        <constructor-arg ref="labelRepository"/>
+    </bean>
+    <bean id="relatedListRepository"
+          class="org.nanoboot.octagon.entity.impl.repos.RelatedListRepositoryImplSQLiteMyBatis">
+        <constructor-arg ref="namedListMapper"/>
+        <constructor-arg ref="relatedListMapper"/>
+    </bean>
+    <bean id="questionRepository"
+          class="org.nanoboot.octagon.entity.impl.repos.QuestionRepositoryImplSQLiteMyBatis">
+        <constructor-arg ref="questionMapper"/>
+    </bean>
+
+<!--    <bean id="tempLogTool"-->
+<!--          class="org.nanoboot.octagon.whining.impl.TempLogTool">-->
+
+<!--        <property name="allRepositories" ref="allRepositories"/>-->
+<!--    </bean>-->
+
+    <bean id="repositoryRegistryImplFactory"
+          class="org.nanoboot.octagon.entity.impl.repos.RepositoryRegistryImplFactory">
+        <property name="entityRegistry" ref="entityRegistry"/>
+    </bean>
+    <bean id="repositoryRegistry"
+          factory-bean="repositoryRegistryImplFactory"
+          factory-method="create"/>
+
+
+</beans>

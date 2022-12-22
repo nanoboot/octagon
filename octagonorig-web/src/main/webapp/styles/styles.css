@@ -1,0 +1,52 @@
+body {
+    padding: 0px;
+    margin: 0px;
+}
+
+.bar {
+    position: relative;
+    margin: auto 0 auto auto;
+    padding: 2px 2px 2px 2px;
+    padding-top: 5px;
+    width: 100%;
+    border-bottom: 2px solid silver;
+    background: #f2f2f2;
+    text-align: right;
+    height: 32px;
+    vertical-align: middle;
+    font-size: 18px;
+}
+
+.bar {
+    background: #f2f2f2;
+    padding-right: 5px;
+}
+
+.toolbar_left {
+    float: left;
+    height: 100%;
+}
+
+.toolbar_right {
+    float: right;
+    height: 100%;
+}
+
+
+.toolbar_separator_left {
+    border-left: 2px solid silver;
+    width: 0px;
+    float: left;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.toolbar_separator_right {
+    border-left: 2px solid silver;
+    width: 0px;
+    float: right;
+}
+
+.icon:hover {
+    background: lightskyblue;
+}

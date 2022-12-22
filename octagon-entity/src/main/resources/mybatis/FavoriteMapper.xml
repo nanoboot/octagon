@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ Octagon: Database frontend.
+ Copyright (C) 2020-2022 the original author or authors.
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; version 2
+ of the License only.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.nanoboot.octagon.plugin.favorite.impl.mappers.FavoriteMapper">
+
+    <resultMap id="favoriteResultMap" type="org.nanoboot.octagon.plugin.favorite.classes.Favorite">
+        <id property="id" column="ID" typeHandler="org.nanoboot.octagon.entity.typehandlers.UUIDTypeHandler"/>
+
+        <result property="type" column="TYPE"/>
+        <result property="objectId" column="OBJECT_ID" typeHandler="org.nanoboot.octagon.entity.typehandlers.UUIDTypeHandler"/>
+
+        <result property="comment" column="COMMENT"/>
+
+        <result property="sortkey" column="SORTKEY"/>
+        <result property="starCount" column="STAR_COUNT"/>
+        <result property="ultraFavorite" column="ULTRA_FAVORITE"/>
+        <result property="group" column="GROUP"/>
+    </resultMap>
+
+    <sql id="favoriteColumns">
+        "ID",
+        "TYPE", "OBJECT_ID",
+        "COMMENT", "SORTKEY", "STAR_COUNT", "ULTRA_FAVORITE", "GROUP"
+    </sql>
+
+    <select id="read" parameterType="String" resultMap="favoriteResultMap">
+        SELECT
+        <include refid="favoriteColumns"/>
+        FROM "FAVORITE"
+        WHERE "ID" = #{id}
+    </select>
+
+    <insert id="create" parameterType="org.nanoboot.octagon.plugin.favorite.classes.Favorite">
+        INSERT INTO "FAVORITE" (<include refid="favoriteColumns"/>)
+        VALUES
+        (
+        #{id,javaType=java.util.UUID,jdbcType=OTHER,typeHandler=org.nanoboot.octagon.entity.typehandlers.UUIDTypeHandler},
+
+        #{type},
+        #{objectId,javaType=java.util.UUID,jdbcType=VARCHAR,typeHandler=org.nanoboot.octagon.entity.typehandlers.UUIDTypeHandler},
+
+        #{comment},
+
+        #{sortkey},
+
+        #{starCount},
+
+        #{ultraFavorite},
+
+        #{group}
+
+        )
+    </insert>
+
+    <update id="update" parameterType="org.nanoboot.octagon.plugin.favorite.classes.Favorite">
+        UPDATE "FAVORITE" SET
+
+                              "TYPE" = #{type},
+                              "OBJECT_ID" = #{objectId},
+
+                              "COMMENT" = #{comment},
+
+                              "SORTKEY" = #{sortkey},
+
+                              "STAR_COUNT" = #{starCount},
+
+                              "ULTRA_FAVORITE" = #{ultraFavorite},
+
+                              "GROUP" = #{group}
+
+        WHERE "ID" = #{id}
+    </update>
+
+    <delete id="delete" parameterType="String">
+        DELETE FROM "FAVORITE"
+        WHERE "ID" = #{id}
+    </delete>
+
+    <select id="list" parameterType="String" resultMap="favoriteResultMap">
+        SELECT
+        <include refid="favoriteColumns"/>
+        FROM "FAVORITE"
+        WHERE ${value}
+
+    </select>
+
+    <select id="isFavorite" parameterType="String" resultType="boolean">
+        SELECT
+            CASE WHEN count(*) > 0 THEN 1 ELSE 0 END
+        FROM "FAVORITE"
+        WHERE "ID" = #{id}
+    </select>
+
+
+
+
+    <!-- Labels -->
+    <resultMap id="labelResultMap" type="org.nanoboot.octagon.entity.classes.EntityLabel">
+        <id property="id" column="ID"/>
+        <result property="label" column="NAME"/>
+    </resultMap>
+
+    <sql id="labelColumns">
+        "ID", "NAME"
+    </sql>
+
+    <select id="getLabel" parameterType="String" resultType="String">
+        SELECT ID, (TYPE || ' : ' || OBJECT_ID) AS NAME FROM "FAVORITE" WHERE "ID" = #{id}
+    </select>
+    <select id="getLabels" resultMap="labelResultMap">
+        SELECT ID, (TYPE || ' : ' || OBJECT_ID) AS NAME FROM "FAVORITE"
+    </select>
+
+</mapper>

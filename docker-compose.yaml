@@ -1,0 +1,24 @@
+version: "2.4"
+
+services:
+  octagon:
+    build:
+      context: .
+      args:
+          OCTAGON_MAVEN_REPO_PASSWORD: ${OCTAGON_MAVEN_REPO_PASSWORD}
+#        artifactory_username: ${ARTIFACTORY_USER}
+#        artifactory_apikey: ${ARTIFACTORY_APIKEY}
+#        maven_profile: DEV
+#    environment:
+#      HTTPS_PROXY: ${HTTPS_PROXY}
+    ports:
+      - "8081:8080"
+#    networks:
+#      - rv
+    volumes:
+      - {path to oct.confpath directory}
+
+
+#networks:
+#  rv:
+#    external: true

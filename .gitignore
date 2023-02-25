@@ -43,3 +43,4 @@ octagon-web/src/main/resources/log4j2.xml
 /octagon-plugin-parent/target/
 /octagon-batch/target/
 oct.confpath/*
+/octagon-clazz-loader/target/

@@ -78,6 +78,7 @@ public class NamedListRepositoryImplSQLiteMyBatis implements NamedListRepository
             case "getGraphs": return getAllLabelsForEntity("Graph");
             case "getVertexesForGraph": return namedListMapper.getVertexesForGraph(forId);
             case "getEdgesForGraph": return namedListMapper.getEdgesForGraph(forId);
+            case "getVariants": return getAllLabelsForEntity("Variant");
             default: throw new OctagonException("Generating for " + name + " failed");
         }
 

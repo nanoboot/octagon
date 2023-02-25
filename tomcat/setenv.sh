@@ -1,4 +1,4 @@
-# place in /bin directory
+# place in /bin directory of Tomcat installation
 
 OCT_CONFPATH="{path to confpath directory}"
 

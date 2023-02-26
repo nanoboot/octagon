@@ -33,6 +33,7 @@ module octagon.web {
     requires octagon.plugin.system;
     requires octagon.plugin.api;
     requires octagon.entity;
+    requires lombok;
 //    opens org.nanoboot.octagon.web;
 //    opens org.nanoboot.octagon.web.rest.controllers;
 }

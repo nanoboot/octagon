@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Octagon | Login</title>
+        <style>
+            input {margin-bottom: 10px;}
+        </style>
+        <script>
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getParameter(parameterName) {
+    const urlParts = window.location.href.split('?');
+    if (urlParts.length > 1) {
+        parameterName = encodeURIComponent(parameterName);
+        const params = urlParts[1].split('&');
+        const foundParam = params.filter(el => (el.split('=')[0] === parameterName) && el);
+        if (foundParam.length)
+            return decodeURIComponent(foundParam[0].split('=')[1]);
+    }
+}
+        
+function getCookie(cname) {
+    var name = cname + "=";
+    console.log("document.cookie=" + document.cookie)
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+        </script> 
+    </head>
+    <body>
+        <h1>Login to continue</h1>
+        <form action="LoginServlet" method="post">
+            <label for="user">Username:</label><input type="text" name="user" id="user"><br>
+            <label for="password">Password:</label> <input type="password" name="password" id="password">
+            
+            <input type="hidden" name="sendRedirect" id="sendRedirect" value="">
+            <br><br><input type="submit" value="Login">
+        </form>
+        <script>
+            sendRedirectParameter = getParameter("sendRedirect");
+            if(sendRedirectParameter !== undefined && sendRedirect) {
+                sendRedirectParameter = atob(sendRedirectParameter);
+                setCookie("sendRedirect", sendRedirectParameter, 3);
+            }
+            sendRedirectValue = getCookie("sendRedirect");
+            if(sendRedirectValue !== undefined && sendRedirectValue) {
+                sendRedirect = document.getElementById("sendRedirect");
+                sendRedirect.setAttribute("value", sendRedirectValue);
+            }
+            
+        </script>
+        
+    </body>
+</html>

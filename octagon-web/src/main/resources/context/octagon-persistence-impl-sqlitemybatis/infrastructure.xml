@@ -95,5 +95,12 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
             <value><![CDATA[${batchEnabled}]]></value>
         </constructor-arg>
     </bean>
+    
+    <bean id="authentication" class="java.lang.Boolean" scope="prototype">
+        <constructor-arg>
+            <value><![CDATA[${authentication}]]></value>
+        </constructor-arg>
+    </bean>
+
 
 </beans>

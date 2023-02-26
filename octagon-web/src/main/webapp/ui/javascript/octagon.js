@@ -163,3 +163,15 @@ function showColumnWithoutCookies(className) {
         cell.style.display = 'table-cell';
     }
 }
+
+function getParameter(parameterName) {
+    const urlParts = window.location.href.split('?');
+    if (urlParts.length > 1) {
+        parameterName = encodeURIComponent(parameterName);
+        const params = urlParts[1].split('&');
+        const foundParam = params.filter(el => (el.split('=')[0] === parameterName) && el);
+        if (foundParam.length)
+            return decodeURIComponent(foundParam[0].split('=')[1]);
+    }
+}
+                

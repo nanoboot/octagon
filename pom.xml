@@ -24,7 +24,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.nanoboot.common</groupId>
+        <groupId>org.nanoboot.essential</groupId>
         <artifactId>nanoboot-parent</artifactId>
         <version>0.1.0-SNAPSHOT</version>
     </parent>
@@ -37,29 +37,29 @@
     <name>octagon</name>
     <description>octagon</description>
     <modules>
-        <module>octagon-core/pom.xml</module>
-        <module>octagon-backup/pom.xml</module>
-        <module>octagon-client/pom.xml</module>
-        <module>octagon-entity/pom.xml</module>
-        <module>octagon-jsonlite/pom.xml</module>
-        <module>octagon-plugin-api/pom.xml</module>
-        <module>octagon-plugin-system/pom.xml</module>
-        <module>octagon-plugin-main/pom.xml</module>
-        <module>octagon-html/pom.xml</module>
-        <module>octagon-struts/pom.xml</module>
-        <module>octagon-mail-impl/pom.xml</module>
-        <module>octagon-whining-impl/pom.xml</module>
-        <module>octagon-reminder/pom.xml</module>
-        <module>octagon-batch/pom.xml</module>
-        <module>octagon-web/pom.xml</module>
-        <module>octagon-plugin-parent/pom.xml</module>
+        <module>octagon-core</module>
+        <module>octagon-backup</module>
+        <module>octagon-client</module>
+        <module>octagon-entity</module>
+        <module>octagon-jsonlite</module>
+        <module>octagon-plugin-api</module>
+        <module>octagon-plugin-system</module>
+        <module>octagon-plugin-main</module>
+        <module>octagon-html</module>
+        <module>octagon-struts</module>
+        <module>octagon-mail-impl</module>
+        <module>octagon-whining-impl</module>
+        <module>octagon-reminder</module>
+        <module>octagon-batch</module>
+        <module>octagon-web</module>
+        <module>octagon-plugin-parent</module>
 
 
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <octagon.version>0.1.0-SNAPSHOT</octagon.version>
-        <power.version>0.1.0-SNAPSHOT</power.version>
+        <power.version>2.0.0-SNAPSHOT</power.version>
         <log4j.version>2.17.0</log4j.version>
         <springframework.version>5.3.17</springframework.version>
         <checkstyle.skip>true</checkstyle.skip><!-- TODO: make false-->

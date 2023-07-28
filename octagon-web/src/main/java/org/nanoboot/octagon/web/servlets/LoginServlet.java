@@ -76,7 +76,7 @@ public class LoginServlet extends HttpServlet implements HttpRequestHandler {
             //new session
             HttpSession newSession = request.getSession(true);
 
-            newSession.setMaxInactiveInterval(30 * 60);
+            newSession.setMaxInactiveInterval(120 * 60);
 
             response.sendRedirect(sendRedirect == null ? "index.html" : sendRedirect);
         } else {

@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.nanoboot.octagon</groupId>
         <artifactId>octagon-plugin-parent</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
+        <version>1.0.0</version>
         <relativePath>../octagon-plugin-parent/pom.xml</relativePath>
     </parent>
 

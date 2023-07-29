@@ -26,12 +26,12 @@
     <parent>
         <groupId>org.nanoboot.essential</groupId>
         <artifactId>nanoboot-parent</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
+        <version>0.1.0</version>
     </parent>
 
     <groupId>org.nanoboot.octagon</groupId>
     <artifactId>octagon-parent</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <packaging>pom</packaging>
     <name>octagon</name>
@@ -58,13 +58,13 @@
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <octagon.version>0.1.0-SNAPSHOT</octagon.version>
-        <power.version>2.0.0-SNAPSHOT</power.version>
+        <octagon.version>1.0.0</octagon.version>
+        <power.version>2.0.0</power.version>
         <log4j.version>2.17.0</log4j.version>
         <springframework.version>5.3.17</springframework.version>
         <checkstyle.skip>true</checkstyle.skip><!-- TODO: make false-->
         <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
-        <db-migration-core.version>0.1.0-SNAPSHOT</db-migration-core.version>
+        <db-migration-core.version>0.1.0</db-migration-core.version>
     </properties>
 
     <build>
@@ -392,4 +392,30 @@
         </dependencies>
     </dependencyManagement>
 
+    <repositories>
+        <repository>
+            <id>releases</id>
+            <name>nanoboot-releases-repository</name>
+            <url>https://maven.nanoboot.org/releases</url>
+        </repository>
+        <repository>
+            <id>snapshots</id>
+            <name>nanoboot-snapshots-repository</name>
+            <url>https://maven.nanoboot.org/snapshots</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>releases</id>
+            <name>nanoboot-releases-repository</name>
+            <url>https://maven.nanoboot.org/releases</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>snapshots</id>
+            <name>nanoboot-snapshots-repository</name>
+            <url>https://maven.nanoboot.org/snapshots</url>
+        </pluginRepository>
+    </pluginRepositories>
+    
 </project>

@@ -33,7 +33,7 @@
     <name>octagon Web</name>
     <description>Web and rest interfaces of octagon</description>
     <properties>
-        <jackson.library>2.9.4</jackson.library>
+        <jackson.library>2.9.10.7</jackson.library>
         <struts2.version>2.5.20</struts2.version>
         <tiles.version>2.5.20</tiles.version>
         <log4j2.version>2.17.0</log4j2.version>

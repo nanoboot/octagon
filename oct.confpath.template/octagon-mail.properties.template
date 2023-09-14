@@ -1,8 +1,0 @@
-smtp.from=name@gmail.com
-smtp.server-url=smtp.gmail.com
-smtp.server-port=465
-smtp.user-name=name@gmail.com
-smtp.password=password
-smtp.ssl=1
-
-smtp.to=name2@gmail.com

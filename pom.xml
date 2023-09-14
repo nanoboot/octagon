@@ -2,24 +2,24 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-<!--
- Octagon: Database frontend.
- Copyright (C) 2020-2022 the original author or authors.
-
- This program is free software; you can redistribute it and/or
- modify it under the terms of the GNU General Public License
- as published by the Free Software Foundation; version 2
- of the License only.
- 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
- 
- You should have received a copy of the GNU General Public License
- along with this program; if not, write to the Free Software
- Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
--->
+    <!--
+     Octagon.
+     Copyright (C) 2020-2023 the original author or authors.
+    
+     This program is free software; you can redistribute it and/or
+     modify it under the terms of the GNU General Public License
+     as published by the Free Software Foundation; version 2
+     of the License only.
+     
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU General Public License for more details.
+     
+     You should have received a copy of the GNU General Public License
+     along with this program; if not, write to the Free Software
+     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+    -->
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -31,37 +31,26 @@
 
     <groupId>org.nanoboot.octagon</groupId>
     <artifactId>octagon-parent</artifactId>
-    <version>1.0.0</version>
+    <version>2.0.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
     <name>octagon</name>
     <description>octagon</description>
     <modules>
-        <module>octagon-core</module>
-        <module>octagon-backup</module>
-        <module>octagon-client</module>
         <module>octagon-entity</module>
-        <module>octagon-jsonlite</module>
-        <module>octagon-plugin-api</module>
-        <module>octagon-plugin-system</module>
-        <module>octagon-plugin-main</module>
-        <module>octagon-html</module>
-        <module>octagon-struts</module>
-        <module>octagon-mail-impl</module>
-        <module>octagon-whining-impl</module>
-        <module>octagon-reminder</module>
-        <module>octagon-batch</module>
+        <module>octagon-persistence-api</module>
+        <module>octagon-persistence-impl-mock</module>
+        <module>octagon-persistence-impl-sqlite</module>
         <module>octagon-web</module>
-        <module>octagon-plugin-parent</module>
 
 
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <octagon.version>1.0.0</octagon.version>
-        <power.version>2.0.0</power.version>
+        <octagon.version>2.0.0-SNAPSHOT</octagon.version>
+        <power.version>2.0.0-SNAPSHOT</power.version>
         <log4j.version>2.17.0</log4j.version>
-        <springframework.version>5.3.17</springframework.version>
+        <springframework.version>6.0.7</springframework.version>
         <checkstyle.skip>true</checkstyle.skip><!-- TODO: make false-->
         <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
         <db-migration-core.version>0.1.0</db-migration-core.version>
@@ -202,6 +191,14 @@
             <artifactId>log4j-core</artifactId>
             <version>${log4j.version}</version>
         </dependency>
+        
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+<!--            <version>${sqlite-jdbc.version}</version>-->
+            <version>3.41.2.1</version>
+        </dependency>
+            
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -239,12 +236,7 @@
                 <version>${springframework.version}</version>
             </dependency>
 
-            <!-- Octagon modules -->
-            <dependency>
-                <groupId>org.nanoboot.octagon</groupId>
-                <artifactId>octagon-core</artifactId>
-                <version>${octagon.version}</version>
-            </dependency>
+            <!-- octagon modules -->
             <dependency>
                 <groupId>org.nanoboot.octagon</groupId>
                 <artifactId>octagon-entity</artifactId>
@@ -252,51 +244,20 @@
             </dependency>
             <dependency>
                 <groupId>org.nanoboot.octagon</groupId>
-                <artifactId>octagon-plugin-api</artifactId>
+                <artifactId>octagon-persistence-api</artifactId>
                 <version>${octagon.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.nanoboot.octagon</groupId>
-                <artifactId>octagon-plugin-main</artifactId>
+                <artifactId>octagon-persistence-impl-mock</artifactId>
                 <version>${octagon.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.nanoboot.octagon</groupId>
-                <artifactId>octagon-html</artifactId>
+                <artifactId>octagon-persistence-impl-sqlite</artifactId>
                 <version>${octagon.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.nanoboot.octagon</groupId>
-                <artifactId>octagon-whining-impl</artifactId>
-                <version>${octagon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.nanoboot.octagon</groupId>
-                <artifactId>octagon-reminder</artifactId>
-                <version>${octagon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.nanoboot.octagon</groupId>
-                <artifactId>octagon-batch</artifactId>
-                <version>${octagon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.nanoboot.octagon</groupId>
-                <artifactId>octagon-mail-impl</artifactId>
-                <version>${octagon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.nanoboot.octagon</groupId>
-                <artifactId>octagon-struts</artifactId>
-                <version>${octagon.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.nanoboot.octagon</groupId>
-                <artifactId>octagon-plugin-system</artifactId>
-                <version>${octagon.version}</version>
-            </dependency>
-
-
+ 
             <!-- Power Framework -->
             <dependency>
                 <groupId>org.nanoboot.powerframework</groupId>
@@ -339,38 +300,6 @@
                 <version>${power.version}</version>
             </dependency>
 
-            <!-- Struts 2 -->
-            <dependency>
-                <groupId>org.apache.struts</groupId>
-                <artifactId>struts2-core</artifactId>
-                <version>${struts2.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.struts</groupId>
-                <artifactId>struts2-tiles-plugin</artifactId>
-                <version>${tiles.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.struts</groupId>
-                <artifactId>struts2-spring-plugin</artifactId>
-                <version>${struts2.version}</version>
-            </dependency>
-
-            <!-- Other dependencies -->
-            <dependency>
-                <groupId>org.mybatis</groupId>
-                <artifactId>mybatis</artifactId>
-                <version>3.5.7</version>
-            </dependency>
-
-            <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
-            <dependency>
-                <groupId>org.mybatis</groupId>
-                <artifactId>mybatis-spring</artifactId>
-                <version>2.0.6</version>
-            </dependency>
-
             <!-- https://mvnrepository.com/artifact/org.json/json -->
             <dependency>
                 <groupId>org.json</groupId>
@@ -379,14 +308,10 @@
             </dependency>
 
             <dependency>
-                <groupId>org.xerial</groupId>
-                <artifactId>sqlite-jdbc</artifactId>
-                <version>${sqlite-jdbc.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
-                <version>3.1.0</version>
+                <groupId>jakarta.platform</groupId>
+                <artifactId>jakarta.jakartaee-web-api</artifactId>
+                <version>9.1.0</version>
+                <scope>provided</scope>
             </dependency>
 
         </dependencies>
@@ -417,5 +342,17 @@
             <url>https://maven.nanoboot.org/snapshots</url>
         </pluginRepository>
     </pluginRepositories>
+    
+    <distributionManagement>
+        <repository>
+            <id>nanoboot-releases-repository</id>
+            <url>https://maven.nanoboot.org/releases</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>nanoboot-snapshots-repository</id>
+            <url>https://maven.nanoboot.org/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
     
 </project>

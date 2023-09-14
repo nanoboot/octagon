@@ -1,9 +1,0 @@
-env=dev
-
-whiningEnabled=false
-reminderEnabled=false
-batchEnabled=true
-
-#value in format {user}/{password} like user/password is expected. Or the value is anonymous and then the authentication is disabled.
-authentication=
-

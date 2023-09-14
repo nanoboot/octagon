@@ -9,26 +9,7 @@
 *.iml
 #*.class
 
-localMavenRepo/.m2*
-localMavenRepo.zip
-m2-cache-repository/.m2*
-m2-cache-repository.zip
-
-
-/octagon-core/target/
-/octagon-backup/target/
-/octagon-entity/target/
-/octagon-plugin-api/target/
-/octagon-plugin-main/target/
-/octagon-client/target/
-/octagon-jsonlite/target/
-/octagon-plugin-system/target/
-/octagon-html/target/
-/octagon-struts/target/
-/octagon-reminder/target/
-/octagon-mail-impl/target/
-/octagon-whining-impl/target/
-/octagon-web/target/
+*/target/*
 
 
 #Netbeans
@@ -37,10 +18,13 @@ m2-cache-repository.zip
 .env
 **.env
 
-octagon-web/src/main/resources/log4j2.xml
-/octagon-plugin-api/nbproject/
+obsolete*
+
+octagon.confpath/*
+
 /target/
-/octagon-plugin-parent/target/
-/octagon-batch/target/
-oct.confpath/*
-/octagon-clazz-loader/target/
+
+#Eclipse
+.project
+**.settings/
+**.classpath

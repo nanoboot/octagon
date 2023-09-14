@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// Octagon: Database frontend.
-// Copyright (C) 2020-2022 the original author or authors.
+// Octagon.
+// Copyright (C) 2023-2023 the original author or authors.
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -20,20 +20,20 @@
 /**
  *
  * @author <a href="mailto:robertvokac@nanoboot.org">Robert Vokac</a>
- * @since 0.1.0
+ * @since 0.0.0
  */
 module octagon.web {
-    requires spring.context;
-    requires javax.servlet.api;
-    requires struts2.core;
-    requires octagon.struts;
-    requires octagon.whining.impl;
-    requires octagon.reminder.impl;
-    requires octagon.mail.impl;
-    requires octagon.plugin.system;
-    requires octagon.plugin.api;
     requires octagon.entity;
+    requires octagon.persistence.api;
+    requires octagon.persistence.impl.mock;
+    requires spring.context;
+    requires jakarta.jakartaee.web.api;
     requires lombok;
-//    opens org.nanoboot.octagon.web;
-//    opens org.nanoboot.octagon.web.rest.controllers;
+    requires spring.web;
+    requires powerframework.time;
+    requires powerframework.io;
+    requires org.xerial.sqlitejdbc;
+    requires asciidoctorj;
+    requires asciidoctorj.api;
+    requires dev.mccue.guava.io;
 }

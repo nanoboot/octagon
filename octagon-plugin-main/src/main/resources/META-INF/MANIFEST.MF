@@ -1,1 +1,0 @@
-Plugin-Class: org.nanoboot.octagon.plugin.main.plugin.MainPlugin

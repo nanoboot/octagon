@@ -23,6 +23,4 @@
   <!--
     <Manager pathname="" />
     -->
-  <Loader loaderClass="org.nanoboot.octagon.clazz.loader.OctagonClassLoader">
-    </Loader>
 </Context>

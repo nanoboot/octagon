@@ -1,7 +1,0 @@
-CREATE TABLE "DATABASE"
-(
-    "ID"          UUID,
-    "ACCESS"      UUID NOT NULL,
-    "NAME"        TEXT NOT NULL UNIQUE,
-    "DESCRIPTION" TEXT
-);

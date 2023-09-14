@@ -1,6 +1,6 @@
 <!--
- Octagon: Database frontend.
- Copyright (C) 2020-2022 the original author or authors.
+ Octagon.
+ Copyright (C) 2023-2023 the original author or authors.
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -30,9 +30,16 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
         <constructor-arg value="abc123"/>
     </bean>
 
-    <import resource="services.xml"/>
-    <import resource="plugins.xml"/>
-    <import resource="entities.xml"/>
-    <import resource="strutsActions.xml"/>
+<bean id="websiteRepoImplMock" class="org.nanoboot.octagon.persistence.impl.mock.WebsiteRepoImplMock"></bean>
+<bean id="variantRepoImplMock" class="org.nanoboot.octagon.persistence.impl.mock.VariantRepoImplMock"></bean>
+
+
+<bean id="sqliteConnectionFactory" class="org.nanoboot.octagon.persistence.impl.sqlite.SqliteConnectionFactory"></bean>
+<bean id="websiteRepoImplSqlite" class="org.nanoboot.octagon.persistence.impl.sqlite.WebsiteRepoImplSqlite">
+    <property name="sqliteConnectionFactory" ref="sqliteConnectionFactory" />
+</bean>
+<bean id="variantRepoImplSqlite" class="org.nanoboot.octagon.persistence.impl.sqlite.VariantRepoImplSqlite">
+    <property name="sqliteConnectionFactory" ref="sqliteConnectionFactory" />
+</bean>
 
 </beans>

@@ -28,10 +28,10 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>octagon-web</artifactId>
+    <artifactId>octagon-example-webapp</artifactId>
     <packaging>war</packaging>
-    <name>octagon Web</name>
-    <description>Web octagon</description>
+    <name>octagon-example-webapp</name>
+    <description>octagon-example-webapp</description>
     <properties>
         <jackson.library>2.9.4</jackson.library>
         <log4j2.version>2.17.0</log4j2.version>
@@ -141,6 +141,11 @@
         <dependency>
             <groupId>org.nanoboot.octagon</groupId>
             <artifactId>octagon-persistence-impl-sqlite</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.nanoboot.octagon</groupId>
+            <artifactId>octagon-jakarta</artifactId>
         </dependency>
          <dependency>
             <groupId>org.nanoboot.forks.commons-fileupload</groupId>

@@ -16,8 +16,9 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package org.nanoboot.octagon.web.filters;
+package org.nanoboot.octagon.jakarta.filters;
 
+import org.nanoboot.octagon.jakarta.utils.OctagonJakartaException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -34,6 +35,7 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.nanoboot.octagon.jakarta.utils.OctagonJakartaUtils;
 
 public class AuthenticationFilter implements Filter {
 
@@ -51,13 +53,14 @@ public class AuthenticationFilter implements Filter {
 
         HttpSession session = req.getSession(false);
         boolean sessionExists = session != null;
+        final String applicationCode = OctagonJakartaUtils.getApplicationCode();
 
-        String octConfpath = System.getProperty("octagon.confpath");
+        String octConfpath = System.getProperty(applicationCode + ".confpath");
         if (octConfpath == null || octConfpath.isEmpty()) {
-            String msg = "csa configuration is broken : " + "octagon.confpath=" + octConfpath;
-            throw new RuntimeException(msg);
+            String msg = "Mandatory system property is broken: " + applicationCode + ".confpath=" + octConfpath;
+            throw new OctagonJakartaException(msg);
         }
-        File octagonProperties = new File(octConfpath + "/octagon.properties");
+        File octagonProperties = new File(octConfpath + "/" + applicationCode +".properties");
         try ( InputStream input = new FileInputStream(octagonProperties.getAbsolutePath())) {
 
             Properties properties = new Properties();
@@ -65,7 +68,7 @@ public class AuthenticationFilter implements Filter {
 
         } catch (IOException ex) {
             ex.printStackTrace();
-            throw new RuntimeException("Loading octagon.properties failed.");
+            throw new OctagonJakartaException("Loading " + applicationCode + ".properties failed.");
         }
 
         if (!sessionExists) {

@@ -26,7 +26,7 @@
     <parent>
         <groupId>org.nanoboot.essential</groupId>
         <artifactId>nanoboot-parent</artifactId>
-        <version>0.1.0</version>
+        <version>0.1.1-SNAPSHOT</version>
     </parent>
 
     <groupId>org.nanoboot.octagon</groupId>
@@ -41,7 +41,7 @@
         <module>octagon-persistence-api</module>
         <module>octagon-persistence-impl-mock</module>
         <module>octagon-persistence-impl-sqlite</module>
-        <module>octagon-web</module>
+        <module>octagon-jakarta</module>
 
 
     </modules>
@@ -257,7 +257,12 @@
                 <artifactId>octagon-persistence-impl-sqlite</artifactId>
                 <version>${octagon.version}</version>
             </dependency>
- 
+            <dependency>
+                <groupId>org.nanoboot.octagon</groupId>
+                <artifactId>octagon-jakarta</artifactId>
+                <version>${octagon.version}</version>
+            </dependency>
+            
             <!-- Power Framework -->
             <dependency>
                 <groupId>org.nanoboot.powerframework</groupId>

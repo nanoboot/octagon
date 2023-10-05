@@ -17,7 +17,7 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package org.nanoboot.octagon.web.misc.filters;
+package org.nanoboot.octagon.jakarta.filters;
 
 import jakarta.servlet.*;
 import java.io.IOException;

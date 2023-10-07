@@ -4,7 +4,7 @@
 <%@page import="java.io.File"%>
 <%@page import="org.nanoboot.octagon.entity.Variant"%>
 <%@page import="org.nanoboot.octagon.persistence.api.VariantRepo"%>
-<%@page import="org.nanoboot.octagon.web.misc.utils.Utils"%>
+<%@page import="org.nanoboot.octagon.jakarta.utils.OctagonJakartaUtils"%>
 <%@page import="org.nanoboot.octagon.persistence.api.WebsiteRepo"%>
 <%@page import="org.nanoboot.octagon.entity.Website"%>
 <%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
@@ -59,7 +59,7 @@
         >> <a href="variants.jsp">Variants</a>
         >> <a href="read_variant.jsp?number=<%=number%>" class="nav_a_current">Read</a>
         
-            <% boolean canUpdate = org.nanoboot.octagon.web.misc.utils.Utils.canUpdate(request); %>
+            <% boolean canUpdate = org.nanoboot.octagon.jakarta.utils.OctagonJakartaUtils.canUpdate(request); %>
 <% if(canUpdate) { %>
 <a href="update_variant.jsp?number=<%=number%>">Update</a>
         <a href="upload_variant_screenshot.jsp?number=<%=number%>">Upload screenshot</a>

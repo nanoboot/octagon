@@ -1,4 +1,4 @@
-<%@page import="org.nanoboot.octagon.web.misc.utils.Utils"%>
+<%@page import="org.nanoboot.octagon.jakarta.utils.OctagonJakartaUtils"%>
 <%@page import="org.nanoboot.octagon.entity.Variant"%>
 <%@page import="org.nanoboot.octagon.persistence.api.VariantRepo"%>
 <%@page import="java.util.List"%>
@@ -49,7 +49,7 @@
         >>
         
                 
-            <% boolean canUpdate = org.nanoboot.octagon.web.misc.utils.Utils.canUpdate(request); %>
+            <% boolean canUpdate = org.nanoboot.octagon.jakarta.utils.OctagonJakartaUtils.canUpdate(request); %>
 <% if(canUpdate) { %>
  <a href="create_variant.jsp">Add Variant</a>
 <% } %>

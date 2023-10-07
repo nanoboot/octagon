@@ -1,4 +1,4 @@
-<%@page import="org.nanoboot.octagon.web.misc.utils.Utils"%>
+<%@page import="org.nanoboot.octagon.jakarta.utils.OctagonJakartaUtils"%>
 <%@page import="org.nanoboot.octagon.persistence.api.WebsiteRepo"%>
 <%@page import="org.nanoboot.octagon.entity.Website"%>
 <%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
@@ -55,7 +55,7 @@
         <a href="read_website.jsp?number=<%=number%>" class="nav_a_current">Read</a>
         
         
-                    <% boolean canUpdate = org.nanoboot.octagon.web.misc.utils.Utils.canUpdate(request); %>
+                    <% boolean canUpdate = org.nanoboot.octagon.jakarta.utils.OctagonJakartaUtils.canUpdate(request); %>
 <% if(canUpdate) { %>
         <a href="update_website.jsp?number=<%=number%>">Update</a>
         <a href="show_content.jsp?number=<%=number%>">Show</a>
@@ -152,10 +152,10 @@ boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("wind
                   website.setRecordingId(java.util.UUID.randomUUID().toString());
                   //https://www.baeldung.com/run-shell-command-in-java
                   
-                  boolean result = org.nanoboot.octagon.web.misc.utils.Utils.runProcess("wb-manager init " + website.getRecordingId(), pywbRootDir);
+                  boolean result = org.nanoboot.octagon.jakarta.utils.OctagonJakartaUtils.runProcess("wb-manager init " + website.getRecordingId(), pywbRootDir);
                   
                   if(!result)
-                  org.nanoboot.octagon.web.misc.utils.Utils.throwErrorInJsp("Creating PyWB collection failed.", out);
+                  org.nanoboot.octagon.jakarta.utils.OctagonJakartaUtils.throwErrorInJsp("Creating PyWB collection failed.", out);
                 
 websiteRepo.update(website);
 java.io.File tmpCollection = new java.io.File(pywbRootDirPath + "/collections/" + website.getRecordingId());
@@ -168,7 +168,7 @@ org.nanoboot.powerframework.io.utils.FileUtils.writeTextToFile(website.getRecord
     }
         //#####
                   if(recording_action.equals("Save")&&recordingEnabled){
-                  if(isWindows) org.nanoboot.octagon.web.misc.utils.Utils.throwErrorInJsp("Recording is not yet supported on Windows (reason- merging ... cat).", out);
+                  if(isWindows) org.nanoboot.octagon.jakarta.utils.OctagonJakartaUtils.throwErrorInJsp("Recording is not yet supported on Windows (reason- merging ... cat).", out);
                 
                   String originalRecordingId = website.getRecordingId();
                   website.setRecordingId("");
@@ -179,7 +179,7 @@ org.nanoboot.powerframework.io.utils.FileUtils.writeTextToFile(website.getRecord
                   
                   
                   java.io.File[] foundArchives = tmpArchiveDir.listFiles();
-                  if(foundArchives.length == 0) org.nanoboot.octagon.web.misc.utils.Utils.throwErrorInJsp("Nothing was recorded. Please, record something.", out);
+                  if(foundArchives.length == 0) org.nanoboot.octagon.jakarta.utils.OctagonJakartaUtils.throwErrorInJsp("Nothing was recorded. Please, record something.", out);
                 
                     
                     websiteRepo.update(website);
@@ -192,8 +192,8 @@ org.nanoboot.powerframework.io.utils.FileUtils.writeTextToFile(website.getRecord
                   out.println("found archive " + f.getAbsolutePath());
                     }
                     if(foundArchives.length> 1) {                    
-if(!org.nanoboot.octagon.web.misc.utils.Utils.runProcess("cat *.warc.gz > tmp&&mv tmp tmp.warc.gz", tmpArchiveDir)) 
-    org.nanoboot.octagon.web.misc.utils.Utils.throwErrorInJsp("Merging WARC files failed.", out);
+if(!org.nanoboot.octagon.jakarta.utils.OctagonJakartaUtils.runProcess("cat *.warc.gz > tmp&&mv tmp tmp.warc.gz", tmpArchiveDir)) 
+    org.nanoboot.octagon.jakarta.utils.OctagonJakartaUtils.throwErrorInJsp("Merging WARC files failed.", out);
     java.io.File tmpWarcGz = new java.io.File(tmpArchiveDir, "tmp.warc.gz");
     tmpWarcGz.renameTo(finalWarcGz);
                     } else {
@@ -202,7 +202,7 @@ if(!org.nanoboot.octagon.web.misc.utils.Utils.runProcess("cat *.warc.gz > tmp&&m
                     
                     java.io.File finalWarcGzInFinalCollection = new java.io.File(targetArchiveDir, finalWarcGz.getName());
                     finalWarcGz.renameTo(finalWarcGzInFinalCollection);
-                    String hash = org.nanoboot.octagon.web.misc.utils.Utils.calculateSHA512Hash(finalWarcGzInFinalCollection);
+                    String hash = org.nanoboot.octagon.jakarta.utils.OctagonJakartaUtils.calculateSHA512Hash(finalWarcGzInFinalCollection);
                     
                     File archiveCheckSums = new File(finalWarcGzInFinalCollection.getParentFile().getParentFile().getAbsolutePath() + "/" + "archiveCheckSums");
                                 System.err.println("archiveCheckSums=" + archiveCheckSums.getAbsolutePath());

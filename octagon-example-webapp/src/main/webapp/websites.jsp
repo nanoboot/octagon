@@ -42,7 +42,7 @@
         >> <a href="websites.jsp" class="nav_a_current">Websites</a>
         
                 
-            <% boolean canUpdate = org.nanoboot.octagon.web.misc.utils.Utils.canUpdate(request); %>
+            <% boolean canUpdate = org.nanoboot.octagon.jakarta.utils.OctagonJakartaUtils.canUpdate(request); %>
 <% if(canUpdate) { %>
 >> <a href="create_website.jsp">Add Website</a>
      <a href="create_websites.jsp">Add Websites</a>

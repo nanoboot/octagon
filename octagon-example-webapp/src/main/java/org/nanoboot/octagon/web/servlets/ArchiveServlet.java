@@ -41,7 +41,7 @@ public class ArchiveServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-//        if (org.nanoboot.octagon.web.misc.utils.Utils.cannotUpdate(req)) {
+//        if (org.nanoboot.octagon.jakarta.utils.OctagonJakartaUtils.cannotUpdate(req)) {
 //            resp.getOutputStream().println("&nbsp;&nbsp;&nbsp;&nbsp;Access forbidden. <br><br> &nbsp;&nbsp;&nbsp;&nbsp;<a href=\"login.html\" target=\"_blank\">Log in</a>");
 //            return;
 //        }

@@ -47,7 +47,7 @@
         >> <a href="create_variant.jsp" class="nav_a_current">Add Variant</a></span>
 
     <%
-        if (org.nanoboot.octagon.web.misc.utils.Utils.cannotUpdate(request)) {
+        if (org.nanoboot.octagon.jakarta.utils.OctagonJakartaUtils.cannotUpdate(request)) {
             out.println("&nbsp;&nbsp;&nbsp;&nbsp;Access forbidden. <br><br> &nbsp;&nbsp;&nbsp;&nbsp;<a href=\"login.html\" target=\"_blank\">Log in</a>");
             throw new jakarta.servlet.jsp.SkipPageException();
         }

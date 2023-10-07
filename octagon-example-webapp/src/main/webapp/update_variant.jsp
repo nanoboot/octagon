@@ -1,5 +1,5 @@
 <%@page import="org.nanoboot.powerframework.time.moment.LocalDate"%>
-<%@page import="org.nanoboot.octagon.web.misc.utils.Utils"%>
+<%@page import="org.nanoboot.octagon.jakarta.utils.OctagonJakartaUtils"%>
 <%@page import="org.nanoboot.octagon.persistence.api.VariantRepo"%>
 <%@page import="org.nanoboot.octagon.entity.Variant"%>
 <%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
@@ -64,7 +64,7 @@
     </span>
 
     <%
-        if (org.nanoboot.octagon.web.misc.utils.Utils.cannotUpdate(request)) {
+        if (org.nanoboot.octagon.jakarta.utils.OctagonJakartaUtils.cannotUpdate(request)) {
             out.println("&nbsp;&nbsp;&nbsp;&nbsp;Access forbidden. <br><br> &nbsp;&nbsp;&nbsp;&nbsp;<a href=\"login.html\" target=\"_blank\">Log in</a>");
             throw new jakarta.servlet.jsp.SkipPageException();
         }

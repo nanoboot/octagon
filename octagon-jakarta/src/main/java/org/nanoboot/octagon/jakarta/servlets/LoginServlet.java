@@ -68,7 +68,7 @@ public class LoginServlet extends HttpServlet {
 
         } catch (IOException ex) {
             ex.printStackTrace();
-            returnError(response, request, "Loading properties failed.");
+            returnError(response, request, "Loading properties failed." + ex.getMessage());
             return;
         }
         

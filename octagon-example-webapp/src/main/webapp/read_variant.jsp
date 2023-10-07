@@ -129,16 +129,16 @@ window.location.href = 'update_variant.jsp?number=<%=number%>'
 
         </tr>
         <tr><th>Name</th><td><%=variant.getName()%></td></tr>
-        <tr><th>Note</th><td><%=Utils.formatToHtml(variant.getNote())%></td></tr>
-        <tr><th>Status</th><td><%=Utils.formatToHtml(variant.getStatus())%></td></tr>
-        <tr><th>Author</th><td><%=Utils.formatToHtml(variant.getAuthor())%></td></tr>
-        <tr><th>Licence</th><td><%=Utils.formatToHtml(variant.getLicence())%></td></tr>
-        <tr><th>User interface</th><td><%=Utils.formatToHtml(variant.getUserInterface())%></td></tr>
-        <tr><th>Programming language</th><td><%=Utils.formatToHtml(variant.getProgrammingLanguage())%></td></tr>
-        <tr><th>Binaries</th><td><%=Utils.formatToHtml(variant.getBinaries())%></td></tr>
-        <tr><th>Open source</th><td><%=Utils.formatToHtml(variant.getOpenSource())%></td></tr>
-        <tr><th>Last update</th><td><%=Utils.formatToHtml(variant.getLastUpdate())%></td></tr>
-        <tr><th>Last version</th><td><%=Utils.formatToHtml(variant.getLastVersion())%></td></tr>
+        <tr><th>Note</th><td><%=OctagonJakartaUtils.formatToHtml(variant.getNote())%></td></tr>
+        <tr><th>Status</th><td><%=OctagonJakartaUtils.formatToHtml(variant.getStatus())%></td></tr>
+        <tr><th>Author</th><td><%=OctagonJakartaUtils.formatToHtml(variant.getAuthor())%></td></tr>
+        <tr><th>Licence</th><td><%=OctagonJakartaUtils.formatToHtml(variant.getLicence())%></td></tr>
+        <tr><th>User interface</th><td><%=OctagonJakartaUtils.formatToHtml(variant.getUserInterface())%></td></tr>
+        <tr><th>Programming language</th><td><%=OctagonJakartaUtils.formatToHtml(variant.getProgrammingLanguage())%></td></tr>
+        <tr><th>Binaries</th><td><%=OctagonJakartaUtils.formatToHtml(variant.getBinaries())%></td></tr>
+        <tr><th>Open source</th><td><%=OctagonJakartaUtils.formatToHtml(variant.getOpenSource())%></td></tr>
+        <tr><th>Last update</th><td><%=OctagonJakartaUtils.formatToHtml(variant.getLastUpdate())%></td></tr>
+        <tr><th>Last version</th><td><%=OctagonJakartaUtils.formatToHtml(variant.getLastVersion())%></td></tr>
 
     </table>
         

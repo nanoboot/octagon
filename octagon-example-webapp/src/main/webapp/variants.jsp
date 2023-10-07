@@ -170,35 +170,35 @@
             </td>
             
             <td>
-                <%=Utils.formatToHtml(v.getNote())%>
+                <%=OctagonJakartaUtils.formatToHtml(v.getNote())%>
             </td>
             <td>
-                <%=Utils.formatToHtml(v.getStatus())%>
+                <%=OctagonJakartaUtils.formatToHtml(v.getStatus())%>
             </td>
             <td>
-                <%=Utils.formatToHtml(v.getAuthor())%>
+                <%=OctagonJakartaUtils.formatToHtml(v.getAuthor())%>
             </td>
             <td>
-                <%=Utils.formatToHtml(v.getLicence())%>
+                <%=OctagonJakartaUtils.formatToHtml(v.getLicence())%>
             </td>
             <td>
-                <%=Utils.formatToHtml(v.getOpenSource())%>
+                <%=OctagonJakartaUtils.formatToHtml(v.getOpenSource())%>
             </td>
             <td>
-                <%=Utils.formatToHtml(v.getUserInterface())%>
+                <%=OctagonJakartaUtils.formatToHtml(v.getUserInterface())%>
             </td>
             <td>
-                <%=Utils.formatToHtml(v.getProgrammingLanguage())%>
+                <%=OctagonJakartaUtils.formatToHtml(v.getProgrammingLanguage())%>
             </td>
 
             <td>
-                <%=Utils.formatToHtml(v.getBinaries())%>
+                <%=OctagonJakartaUtils.formatToHtml(v.getBinaries())%>
             </td>
             <td>
                 <%=v.getLastUpdate()== null ? EMPTY :v.getLastUpdate().toString()%>
             </td>
             <td>
-                <%=Utils.formatToHtml(v.getLastVersion())%>
+                <%=OctagonJakartaUtils.formatToHtml(v.getLastVersion())%>
             </td>
 
         </tr>

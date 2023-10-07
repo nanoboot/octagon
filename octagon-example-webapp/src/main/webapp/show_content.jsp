@@ -103,7 +103,7 @@
 
                 String contentString = sc.next();
                 isAdoc = contentString.startsWith("_adoc_");
-                contentString = Utils.convertToAsciidocIfNeeded(contentString.replace("[[FILE]]", "FileServlet/" + number + "/"));
+                contentString = OctagonJakartaUtils.convertToAsciidocIfNeeded(contentString.replace("[[FILE]]", "FileServlet/" + number + "/"));
             
                 if(isAdoc) {out.println("<style>" + org.nanoboot.octagon.web.misc.utils.Constants.ASCIIDOC_CSS + "</style>");}
                 out.println("<div id=\"content\" ondblclick = \"redirectToEdit()\" style=\"padding-left:20px;padding-right:20px;\">" + contentString + "</div>");

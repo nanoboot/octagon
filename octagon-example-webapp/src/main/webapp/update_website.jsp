@@ -99,7 +99,7 @@
             </tr>
                         <tr>
                 <td><label for="archives">Archives <b style="color:red;font-size:130%;"></b>:</label></td>
-                <td><input type="text" name="archives" value="<%=Utils.formatToHtmlWithoutEmptyWord(website.getArchives())%>"></td>
+                <td><input type="text" name="archives" value="<%=OctagonJakartaUtils.formatToHtmlWithoutEmptyWord(website.getArchives())%>"></td>
             </tr>
             
             
@@ -109,7 +109,7 @@
             </tr>
             <tr>
                 <td><label for="language">Language:</label></td>
-                <td style="text-align:left;"><input type="text" name="language" value="<%=Utils.formatToHtmlWithoutEmptyWord(website.getLanguage())%>" size="4" ></td>
+                <td style="text-align:left;"><input type="text" name="language" value="<%=OctagonJakartaUtils.formatToHtmlWithoutEmptyWord(website.getLanguage())%>" size="4" ></td>
             </tr>
             <tr>
                 <td><label for="verified">Content verified:</label></td>

@@ -146,7 +146,7 @@
             boolean isAdoc = false;
             isAdoc = contentString.startsWith("_adoc_");
             if(isAdoc) {out.println("<style>" + org.nanoboot.octagon.web.misc.utils.Constants.ASCIIDOC_CSS + "</style>");}
-                out.println("<div>" + Utils.convertToAsciidocIfNeeded(contentString.replace("[[FILE]]", "FileServlet/" + number + "/")) + "</div>");
+                out.println("<div>" + OctagonJakartaUtils.convertToAsciidocIfNeeded(contentString.replace("[[FILE]]", "FileServlet/" + number + "/")) + "</div>");
             }
         %>
         <% if (submit_button_save_changes

@@ -114,16 +114,16 @@ window.location.href = 'update_website.jsp?number=<%=number%>'
         <tr><th>Archive url</th><td>
                 <%
                     if(website.getArchiveUrl() != null && !website.getArchiveUrl().isEmpty()) {%>
-                    <a href="<%=Utils.formatToHtml(website.getArchiveUrl())%>" target="_blank"><%=Utils.formatToHtml(website.getArchiveUrl())%></a>
-                    <% } else {%><%=Utils.formatToHtml(website.getArchiveUrl())%><%}
+                    <a href="<%=OctagonJakartaUtils.formatToHtml(website.getArchiveUrl())%>" target="_blank"><%=OctagonJakartaUtils.formatToHtml(website.getArchiveUrl())%></a>
+                    <% } else {%><%=OctagonJakartaUtils.formatToHtml(website.getArchiveUrl())%><%}
             %>
             </td></tr>
-        <tr><th>Web archive snapshot</th><td><%=Utils.formatToHtml(website.getWebArchiveSnapshot())%></td></tr>
-        <tr><th>Language</th><td><%=Utils.formatToHtml(website.getLanguage())%></td></tr>
-        <tr><th>Content verified</th><td><%=Utils.formatToHtml(website.getContentVerified())%></td></tr>
-        <tr><th>Archive verified</th><td><%=Utils.formatToHtml(website.getArchiveVerified())%></td></tr>
-        <tr><th>Variant</th><td><a href="read_variant.jsp?number=<%=Utils.formatToHtml(website.getVariantNumber())%>" >Variant #<%=Utils.formatToHtml(website.getVariantNumber())%></a></td></tr>
-        <tr><th>Comment</th><td><%=Utils.formatToHtml(website.getComment())%></td></tr>
+        <tr><th>Web archive snapshot</th><td><%=OctagonJakartaUtils.formatToHtml(website.getWebArchiveSnapshot())%></td></tr>
+        <tr><th>Language</th><td><%=OctagonJakartaUtils.formatToHtml(website.getLanguage())%></td></tr>
+        <tr><th>Content verified</th><td><%=OctagonJakartaUtils.formatToHtml(website.getContentVerified())%></td></tr>
+        <tr><th>Archive verified</th><td><%=OctagonJakartaUtils.formatToHtml(website.getArchiveVerified())%></td></tr>
+        <tr><th>Variant</th><td><a href="read_variant.jsp?number=<%=OctagonJakartaUtils.formatToHtml(website.getVariantNumber())%>" >Variant #<%=OctagonJakartaUtils.formatToHtml(website.getVariantNumber())%></a></td></tr>
+        <tr><th>Comment</th><td><%=OctagonJakartaUtils.formatToHtml(website.getComment())%></td></tr>
         
         <tr><th>Recording</th><td>
                 
@@ -269,8 +269,8 @@ org.nanoboot.powerframework.io.utils.FileUtils.writeTextToFile(hash, hexFile);
                  <% } %>
                  
             </td></tr>
-        <tr><th>Recording Id</th><td><%=Utils.formatToHtml(website.getRecordingId())%></td></tr>
-        <tr><th>Recording comment</th><td><%=Utils.formatToHtml(website.getRecordingComment())%></td></tr>
+        <tr><th>Recording Id</th><td><%=OctagonJakartaUtils.formatToHtml(website.getRecordingId())%></td></tr>
+        <tr><th>Recording comment</th><td><%=OctagonJakartaUtils.formatToHtml(website.getRecordingComment())%></td></tr>
     </table>
         <p class="margin_left_and_big_font"><a href="list_archives.jsp?number=<%=website.getNumber()%>" target="_blank">List archives</a></p>
         

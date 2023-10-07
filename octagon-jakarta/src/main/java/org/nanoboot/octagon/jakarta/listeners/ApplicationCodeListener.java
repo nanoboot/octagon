@@ -30,6 +30,7 @@ import org.nanoboot.octagon.jakarta.utils.OctagonJakartaUtils;
  */
 public class ApplicationCodeListener implements ServletContextListener {
 
+    public static String APPLICATION_CODE = null;
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext ctx = sce.getServletContext();
@@ -39,7 +40,8 @@ public class ApplicationCodeListener implements ServletContextListener {
         if (applicationCode == null || applicationCode.isBlank()) {
             throw new OctagonException("Missing mandatory Param Name" + OctagonJakartaUtils.OCTAGON_APPLICATION_CODE);
         }
-        System.setProperty(OctagonJakartaUtils.OCTAGON_APPLICATION_CODE, applicationCode);
+        //System.setProperty(OctagonJakartaUtils.OCTAGON_APPLICATION_CODE, applicationCode);
+        APPLICATION_CODE = applicationCode;
     }
 
     @Override

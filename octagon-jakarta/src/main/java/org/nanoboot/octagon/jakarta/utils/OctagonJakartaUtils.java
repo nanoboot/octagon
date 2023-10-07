@@ -38,6 +38,7 @@ import java.util.logging.Logger;
 import org.asciidoctor.Asciidoctor;
 import static org.asciidoctor.Asciidoctor.Factory.create;
 import org.nanoboot.octagon.entity.OctagonException;
+import org.nanoboot.octagon.jakarta.listeners.ApplicationCodeListener;
 
 /**
  *
@@ -52,7 +53,7 @@ public class OctagonJakartaUtils {
     }
     public static String getApplicationCode() {
         if(APPLICATION_CODE == null) {
-            APPLICATION_CODE = System.getProperty(OCTAGON_APPLICATION_CODE);
+            APPLICATION_CODE = ApplicationCodeListener.APPLICATION_CODE;//System.getProperty(OCTAGON_APPLICATION_CODE);
             if(APPLICATION_CODE == null || APPLICATION_CODE.isBlank()) {
                 throw new OctagonException("Missing mandatory System property " + OCTAGON_APPLICATION_CODE);
             }

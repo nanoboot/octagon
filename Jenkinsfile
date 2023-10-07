@@ -48,7 +48,7 @@ tomcat10test
                                 mvn clean install
         		        ;;
     		        
-      		          develop | jenkins | deploy_test)
+      		          develop | jenkins | deploy_test | feature/v2)
         		        echo Branch $BRANCH_NAME is supported. Continuing.
                                 version=`mvn help:evaluate -Dexpression=project.version -q -DforceStdout`
                                 echo version=$version

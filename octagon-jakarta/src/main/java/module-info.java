@@ -36,4 +36,7 @@ module octagon.jakarta {
     requires asciidoctorj;
     requires asciidoctorj.api;
     requires dev.mccue.guava.io;
+    exports org.nanoboot.octagon.jakarta.filters;
+    exports org.nanoboot.octagon.jakarta.listeners;
+    exports org.nanoboot.octagon.jakarta.utils;
 }

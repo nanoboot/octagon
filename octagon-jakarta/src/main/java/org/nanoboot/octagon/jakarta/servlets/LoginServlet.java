@@ -17,7 +17,7 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package org.nanoboot.octagon.web.servlets;
+package org.nanoboot.octagon.jakarta.servlets;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -33,6 +33,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.nanoboot.octagon.jakarta.utils.OctagonJakartaUtils;
 
 @WebServlet(
         name = "LoginServlet",
@@ -49,13 +50,14 @@ public class LoginServlet extends HttpServlet {
         String expectedUser = "";
         String expectedPassword = "";
 
-        String csaConfPath = System.getProperty("octagon.confpath");
+        final String applicationCode = OctagonJakartaUtils.getApplicationCode();
+        String csaConfPath = System.getProperty(applicationCode + ".confpath");
         if (csaConfPath == null || csaConfPath.isEmpty()) {
-            String msg = "csa configuration is broken : " + "octagon.confpath=" + csaConfPath;
+            String msg = "csa configuration is broken : " + applicationCode + ".confpath=" + csaConfPath;
             returnError(response, request, msg);
             return;
         }
-        File csaProperties = new File(csaConfPath + "/octagon.properties");
+        File csaProperties = new File(csaConfPath + applicationCode + "/.properties");
 
         String authentication = "";
         try ( InputStream input = new FileInputStream(csaProperties.getAbsolutePath())) {
@@ -66,14 +68,14 @@ public class LoginServlet extends HttpServlet {
 
         } catch (IOException ex) {
             ex.printStackTrace();
-            returnError(response, request, "Loading csa properties failed.");
+            returnError(response, request, "Loading properties failed.");
             return;
         }
         
         if (authentication != null && !authentication.isBlank()) {
             String[] authenticationArray = authentication.split("/");
             if (authenticationArray.length != 2) {
-                returnError(response, request, "csa configuration is broken (array.length != 2). Contact csa administrator.");
+                returnError(response, request, "configuration is broken (array.length != 2). Contact administrator.");
                 return;
             }
             expectedUser = authenticationArray[0];
@@ -93,9 +95,10 @@ public class LoginServlet extends HttpServlet {
 
             System.out.println("Created new session " + newSession.toString());
             newSession.setAttribute("canUpdate", "true");
+            newSession.setAttribute("canRead", "true");
             
             System.err.println("canUpdate&& = " + newSession.getAttribute("canUpdate"));
-            newSession.setMaxInactiveInterval(6 * 60 * 60);
+            newSession.setMaxInactiveInterval(30 * 24 * 60 * 60);
 
             response.sendRedirect("index.jsp");
         } else {

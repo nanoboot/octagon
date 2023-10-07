@@ -54,11 +54,11 @@ public class LoginServlet extends HttpServlet {
         System.out.println("applicationCode=" + applicationCode);
         String csaConfPath = System.getProperty(applicationCode + ".confpath");
         if (csaConfPath == null || csaConfPath.isEmpty()) {
-            String msg = "csa configuration is broken : " + applicationCode + ".confpath=" + csaConfPath;
+            String msg = "configuration is broken : " + applicationCode + ".confpath=" + csaConfPath;
             returnError(response, request, msg);
             return;
         }
-        File csaProperties = new File(csaConfPath + applicationCode + "/.properties");
+        File csaProperties = new File(csaConfPath + "/" + applicationCode + ".properties");
 
         String authentication = "";
         try ( InputStream input = new FileInputStream(csaProperties.getAbsolutePath())) {
@@ -69,7 +69,7 @@ public class LoginServlet extends HttpServlet {
 
         } catch (IOException ex) {
             ex.printStackTrace();
-            returnError(response, request, "Loading properties failed." + ex.getMessage());
+            returnError(response, request, "Loading properties failed. " + ex.getMessage());
             return;
         }
         

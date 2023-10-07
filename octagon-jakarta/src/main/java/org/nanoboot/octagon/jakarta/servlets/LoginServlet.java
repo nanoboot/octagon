@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
         String expectedPassword = "";
 
         final String applicationCode = OctagonJakartaUtils.getApplicationCode();
-        log.info("applicationCode=" + applicationCode)
+        System.out.println("applicationCode=" + applicationCode);
         String csaConfPath = System.getProperty(applicationCode + ".confpath");
         if (csaConfPath == null || csaConfPath.isEmpty()) {
             String msg = "csa configuration is broken : " + applicationCode + ".confpath=" + csaConfPath;
